@@ -8,6 +8,10 @@ body {
     color: #fafafa;
 }
 
+h1, h2, h3, h4 {
+  font-family: ui-serif, georgia, serif;
+}
+
 a {
   color: inherit;
   text-decoration: none;
