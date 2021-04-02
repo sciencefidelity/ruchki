@@ -36,7 +36,7 @@
 }
 
 .title a {
-  color: teal;
+  color: orange;
   text-decoration: none;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .code {
-  background: #fafafa;
+  background: teal;
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
