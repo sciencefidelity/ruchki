@@ -22,7 +22,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        Powered by{' '}
+        Powered by&nbsp;
         <a
           href="https://mattcook.dev"
           target="_blank"
