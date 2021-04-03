@@ -11,7 +11,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://sciencefidelity.co.uk">Sciencefidelity!</a>
+          Are you ready for <a href="https://sciencefidelity.co.uk">Sciencefidelity!</a>
         </h1>
 
         <p className={styles.description}>
