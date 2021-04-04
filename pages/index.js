@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+// this is the front page
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -22,13 +24,13 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        Powered by&nbsp;
+        Magically masterminded by&nbsp;
         <a
           href="https://mattcook.dev"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Matt
+          Matt!
         </a>
       </footer>
     </div>
