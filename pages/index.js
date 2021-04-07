@@ -13,7 +13,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Are you ready for <a href="https://sciencefidelity.co.uk">Sciencefidelity!</a>
+          Get ready for <a href="https://sciencefidelity.co.uk">Sciencefidelity!</a>
         </h1>
 
         <p className={styles.description}>
@@ -24,7 +24,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        Magically masterminded by&nbsp;
+        Masterminded magically by&nbsp;
         <a
           href="https://mattcook.dev"
           target="_blank"
