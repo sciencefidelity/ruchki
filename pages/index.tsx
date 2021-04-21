@@ -12,25 +12,27 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <div className="emoji">
+          <div className="tube">🧪</div>
+          <div className="circle"></div>
+        </div>
         <h1 className={styles.title}>
-          <a href="https://sciencefidelity.co.uk">Sciencefidelity</a> loves company!
+          <a href="https://sciencefidelity.co.uk">Sciencefidelity</a> Laboratory.
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+        Experiments and inventions.
         </p>
 
       </main>
 
       <footer className={styles.footer}>
-        Masterminded magically by&nbsp;
         <a
           href="https://mattcook.dev"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Matt!
+         by&nbsp;Matt
         </a>
       </footer>
     </div>
