@@ -21,7 +21,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-        Experiments and inventions.
+        Experiments and investigations.
         </p>
 
       </main>
@@ -32,7 +32,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-         by&nbsp;Matt
+         by&nbsp;Matt&nbsp;Cook
         </a>
       </footer>
     </div>
