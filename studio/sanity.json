@@ -3,10 +3,6 @@
   "project": {
     "name": "inourhands"
   },
-  "api": {
-    "projectId": "d5kibd92",
-    "dataset": "production"
-  },
   "plugins": [
     "@sanity/base",
     "@sanity/default-layout",
