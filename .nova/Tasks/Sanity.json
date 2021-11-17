@@ -1,0 +1,17 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "cd studio\nsanity deploy"
+    },
+    "clean" : {
+      "enabled" : true,
+      "script" : "cd studio\nnpm run clean"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "cd studio\nnpm run dev"
+    }
+  },
+  "identifier" : "01EE14D6-E442-4931-A1AA-557DF3EC07F6"
+}
