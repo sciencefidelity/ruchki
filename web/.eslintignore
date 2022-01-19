@@ -1,6 +1,9 @@
-node_modules
 dist
+generated
+functions
+node_modules
+static
+generated
+pnpm-lock.yaml
 .nova
-build
-.snowpack
-.nova
+.vscode

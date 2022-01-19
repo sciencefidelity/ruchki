@@ -1,4 +1,4 @@
-@use './colors' as c;
+@use './colors';
 
 * + * {
   margin-top: 1rem;
@@ -10,15 +10,19 @@
 }
 
 html {
-  background-color: c.$dark-blue;
   font-size: 62.5%;
+  background-color: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: c.$dark-blue;
-  color: c.$grey-050;
-  font-size: calc(10px + 2vmin);
   margin: auto;
+  font-size: calc(10px + 2vmin);
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+a {
+  color: var(--orange);
 }
