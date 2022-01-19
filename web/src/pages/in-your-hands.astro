@@ -1,0 +1,19 @@
+---
+import { Markdown } from "astro/components"
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { capitalize } from "../lib/utils.ts"
+const title = "The world is in your hands"
+---
+<BaseLayout title={title}>
+  <div>
+    <h1>{title}</h1>
+    <Markdown>
+
+    </Markdown>
+  </div>
+</BaseLayout>
+
+<!-- prettier-ignore -->
+<style>
+
+</style>
