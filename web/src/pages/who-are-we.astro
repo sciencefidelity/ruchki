@@ -9,7 +9,6 @@ const query = groq`*[_type == 'article'][0]`
 
 const response = await sanityClient.fetch(query)
 const data = await response
-console.log(data)
 ---
 <BaseLayout title={data.title}>
   <div>
