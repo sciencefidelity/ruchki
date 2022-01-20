@@ -1,16 +1,20 @@
 ---
-// import { Markdown } from "astro/components"
+import { Markdown } from "astro/components"
+import sanityClient from "../sanityClient"
 import groq from "groq"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import { capitalize } from "../lib/utils.ts"
 
 const query = groq`*[_type == 'article'][0]`
-const title = "Who are we?"
+
+const response = await sanityClient.fetch(query)
+const data = await response
+console.log(data)
 ---
-<BaseLayout title={title}>
-  <div class={title}>
-    <h1>{title}</h1>
-    <p>{query}</p>
+<BaseLayout title={data.title}>
+  <div>
+    <h1>{data.title}</h1>
+    <Markdown>{data.body}</Markdown>
   </div>
 </BaseLayout>
 
