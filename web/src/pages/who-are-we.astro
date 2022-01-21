@@ -3,7 +3,6 @@ import { Markdown } from "astro/components"
 import sanityClient from "../sanityClient"
 import groq from "groq"
 import BaseLayout from "../layouts/BaseLayout.astro"
-import { capitalize } from "../lib/utils.ts"
 
 const query = groq`*[_type == 'article'][0]`
 
