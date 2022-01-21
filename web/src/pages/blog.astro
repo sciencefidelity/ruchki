@@ -1,15 +1,22 @@
 ---
-import { Markdown } from "astro/components"
+import groq from "groq"
+import sanityClient from "../sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
+
+const query = groq`*[_type == 'post']`
+
+const response = await sanityClient.fetch(query)
+const data = await response
 
 const title = "Blog"
 ---
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
-    <Markdown>
-
-    </Markdown>
+    <br>
+    <ul>
+      {data.map(item => <li><a href={item.slug.current}>{item.title}</a></li>)}
+    </ul>
   </div>
 </BaseLayout>
 

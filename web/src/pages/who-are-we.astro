@@ -1,7 +1,7 @@
 ---
 import { Markdown } from "astro/components"
-import sanityClient from "../sanityClient"
 import groq from "groq"
+import sanityClient from "../sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
 const query = groq`*[_type == 'article'][0]`
