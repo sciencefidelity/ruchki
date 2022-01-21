@@ -1,0 +1,46 @@
+---
+import { Markdown } from "astro/components"
+import groq from "groq"
+import sanityClient from "../../sanityClient"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+
+export async function getStaticPaths() {
+  const query = groq`*[_type == "post"] | order(_createdAt) {
+    _createdAt,
+    "author": author->name,
+    body,
+    "categories": categories[]->title,
+    "slug": slug.current,
+    title
+  }`
+  const data = await sanityClient.fetch(query).then(response => response)
+  return data.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: { post } }
+  })
+}
+
+const { slug } = Astro.request.params
+const { post } = Astro.props
+
+const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+const date = new Date(post._createdAt).toLocaleDateString("en-GB", options)
+
+console.log(post)
+---
+<BaseLayout title={post.title}>
+  <div>
+    <h1>{post.title}</h1>
+    <p>by: {post.author}</p>
+    <p>published on: {date}</p>
+    <p>in: {post.categories.sort().join(", ")}</p>
+    <br>
+    <Markdown>{post.body}</Markdown>
+  </div>
+</BaseLayout>
+
+<!-- prettier-ignore -->
+<style>
+
+</style>

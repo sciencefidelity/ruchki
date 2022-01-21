@@ -3,7 +3,7 @@ import groq from "groq"
 import sanityClient from "../sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
-const query = groq`*[_type == 'post']`
+const query = groq`*[_type == "post"] | order(_createdAt desc)`
 
 const response = await sanityClient.fetch(query)
 const data = await response
