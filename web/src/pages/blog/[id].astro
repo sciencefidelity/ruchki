@@ -1,0 +1,30 @@
+---
+import { Markdown } from "astro/components"
+import groq from "groq"
+import sanityClient from "../../sanityClient"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+
+export async function getStaticPaths() {
+  const query = groq`*[_type == 'post']`
+  const data = await sanityClient.fetch(query).then(response => response)
+  return data.map((post) => {
+    return {
+      params: { id: post.slug.current },
+      props: { post } }
+  })
+}
+const {id} = Astro.request.params
+const {post} = Astro.props
+---
+<BaseLayout title={post.title}>
+  <div>
+    <h1>{post.title}</h1>
+    <br>
+    <Markdown>{post.body}</Markdown>
+  </div>
+</BaseLayout>
+
+<!-- prettier-ignore -->
+<style>
+
+</style>
