@@ -1,8 +1,8 @@
 import sanityClient from "@sanity/client"
 
 export default sanityClient({
-  projectId: "d5kibd92",
-  dataset: "production",
-  apiVersion: "2021-03-25",
+  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+  dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+  apiVersion: import.meta.env.PUBLIC_SANITY_API_VERSION,
   useCdn: true
 })
