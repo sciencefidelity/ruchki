@@ -5,13 +5,10 @@ import sanityClient from "../../sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
 
 export async function getStaticPaths({ paginate }) {
-  const query = groq`*[_type == "post"] | order(_createdAt) {
-    _createdAt,
-    author->,
-    body,
-    "categories": categories[]->title,
-    "slug": slug.current,
-    title
+  const query = groq`*[_type == "author"] | order(name){
+    bio,
+    name,
+    "slug": slug.current
   }`
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map((post) => {
@@ -30,12 +27,9 @@ const date = new Date(post._createdAt).toLocaleDateString("en-GB", options)
 ---
 <BaseLayout title={post.title}>
   <div>
-    <h1>{post.title}</h1>
-    <p>by: <a href=`/author/${post.author.slug.current}`>{post.author.name}</a></p>
-    <p>published on: {date}</p>
-    <p>in: {post.categories.sort().join(", ")}</p>
+    <h1>{post.name}</h1>
     <br>
-    <Markdown>{post.body}</Markdown>
+    <Markdown>{post.bio}</Markdown>
   </div>
 </BaseLayout>
 
