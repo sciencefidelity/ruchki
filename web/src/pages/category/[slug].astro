@@ -6,7 +6,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
 
 export async function getStaticPaths() {
   const query = groq`*[_type == "category"] | order(title){
-    "posts": *[_type == "post" && categories[0]._ref == ^._id]{title, slug},
+    _id,
+    "posts": *[_type == "post" && references(^._id)]{title, slug},
     "slug": slug.current,
     title,
     _id
