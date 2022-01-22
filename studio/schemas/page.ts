@@ -10,7 +10,7 @@ export default {
     {
       name: 'seo',
       title: 'SEO'
-    },
+    }
   ],
   fields: [
     {
