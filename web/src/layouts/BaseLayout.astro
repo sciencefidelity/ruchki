@@ -11,6 +11,23 @@ const {title} = Astro.props
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>{title} | In Our Hands</title>
+  <meta name="description" content={seoDescription}>
+  <meta name="keywords" content={keywords}>
+
+  <meta property="og:title" content={seoTitle}>
+  <meta property="og:description" content={seoDescription}>
+  <meta property="og:url" content=`https://in-our-hands.com${slug}`>
+  <meta property="og:image" content={seoImage}>
+  <meta property="og:site_name" content="In Our Hands">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:type" content="article">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={seoTitle}>
+  <meta name="twitter:description" content={seoDescription}>
+  <meta name="twitter:site" content={twitter}>
+  <meta name="twitter:image" content={seoImage}>
+  <meta name="twitter:creator" content={twitterHandle}>
 
   <link
     rel="icon"
@@ -18,7 +35,7 @@ const {title} = Astro.props
       <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
         <text y=%22.9em%22 font-size=%2290%22>✋</text>
       </svg>"
-  />
+  >
   <link rel="stylesheet" href={Astro.resolve('../styles/global.scss')}>
 
 </head>

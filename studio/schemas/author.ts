@@ -26,6 +26,11 @@ export default {
       }
     },
     {
+      name: 'twitterHandle',
+      title: 'Twitter Handle',
+      type: 'string'
+    },
+    {
       name: 'bio',
       title: 'Bio',
       type: 'markdown'
