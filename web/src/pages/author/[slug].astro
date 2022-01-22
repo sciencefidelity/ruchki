@@ -12,9 +12,9 @@ export async function getStaticPaths( ) {
       publishedAt, title, slug
     },
     "slug": slug.current
-  }`
+  }[count(posts) > 0]`
   const data = await sanityClient.fetch(query).then(response => response)
-  return data.map((author) => {
+  return data.map(author => {
     return {
       params: { slug: author.slug },
       props: { author }
@@ -49,6 +49,8 @@ const metaTitle = `Author: ${author.name}`
         </li>
       )}
     </ul>
+    <br>
+    <p><a href="/authors">All authors</a></p>
   </div>
 </BaseLayout>
 

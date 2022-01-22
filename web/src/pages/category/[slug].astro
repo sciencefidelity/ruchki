@@ -13,7 +13,7 @@ export async function getStaticPaths() {
     "slug": slug.current,
     title,
     _id
-  }`
+  }[count(posts) > 0]`
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(category => {
     return {
