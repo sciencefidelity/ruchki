@@ -31,8 +31,10 @@ const options = {
   month: "long",
   day: "numeric"
 }
+
+const metaTitle = `Author: ${author.name}`
 ---
-<BaseLayout title={author.title}>
+<BaseLayout title={metaTitle}>
   <div>
     <h1>Author: {author.name}</h1>
     <br>
