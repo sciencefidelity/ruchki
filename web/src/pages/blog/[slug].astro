@@ -4,7 +4,7 @@ import groq from "groq"
 import sanityClient from "../../sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths() {
   const query = groq`*[_type == "post"] {
     author->,
     body,
@@ -32,8 +32,6 @@ const options = {
   day: "numeric"
 }
 const date = new Date(post.publishedAt).toLocaleDateString("en-GB", options)
-
-console.log(post.categories.map(item => item.title).join(", "))
 ---
 <BaseLayout title={post.title}>
   <div>
