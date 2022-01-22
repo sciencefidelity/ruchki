@@ -9,7 +9,7 @@ export async function getStaticPaths({ paginate }) {
     _createdAt,
     author->,
     body,
-    "categories": categories[]->title,
+    "categories": categories[]->,
     "slug": slug.current,
     title
   }`
@@ -31,9 +31,16 @@ const date = new Date(post._createdAt).toLocaleDateString("en-GB", options)
 <BaseLayout title={post.title}>
   <div>
     <h1>{post.title}</h1>
-    <p>by: <a href=`/author/${post.author.slug.current}`>{post.author.name}</a></p>
     <p>published on: {date}</p>
-    <p>in: {post.categories.sort().join(", ")}</p>
+    <p>by:
+      <a href=`/author/${post.author.slug.current}`>{post.author.name}</a>
+    </p>
+    <br>
+    <ul>
+      {post.categories.map((item, index) =>
+        <li><a href=`/category/${item.slug.current}`>{item.title}</a></li>
+      )}
+    </ul>
     <br>
     <Markdown>{post.body}</Markdown>
   </div>
