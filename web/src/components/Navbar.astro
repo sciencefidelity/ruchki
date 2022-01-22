@@ -1,9 +1,21 @@
+---
+import groq from "groq"
+import sanityClient from "../sanityClient"
+
+const query = groq`*[_type == "page"]{
+  "slug": slug.current,
+  title
+}`
+
+const response = await sanityClient.fetch(query)
+const data = await response
+---
 <nav class="nav">
   <ul>
     <a href="/"><li>Home</li></a>
-    <a href="/who-are-we"><li>Who are we?</li></a>
-    <a href="/our-message"><li>Our message</li></a>
-    <a href="/in-your-hands"><li>In your hands</li></a>
+    {data.map(item =>
+      <li><a href={item.slug}>{item.title}</a></li>
+    )}
     <a href="/blog"><li>Blog</li></a>
     <a href="/contact-us"><li>Contact us</li></a>
   </ul>

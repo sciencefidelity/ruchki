@@ -4,16 +4,29 @@ import groq from "groq"
 import sanityClient from "../sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
-const query = groq`*[_type == "article"][0]`
+export async function getStaticPaths() {
+  const query = groq`*[_type == "page"]{
+    body,
+    "slug": slug.current,
+    title
+  }`
+  const data = await sanityClient.fetch(query).then(response => response)
+  return data.map(page => {
+    return {
+      params: { slug: page.slug },
+      props: { page }
+    }
+  })
+}
 
-const response = await sanityClient.fetch(query)
-const data = await response
+const { slug } = Astro.request.params
+const { page } = Astro.props
 ---
-<BaseLayout title={data.title}>
+<BaseLayout title={page.title}>
   <div>
-    <h1>{data.title}</h1>
+    <h1>{page.title}</h1>
     <br>
-    <Markdown>{data.body}</Markdown>
+    <Markdown>{page.body}</Markdown>
   </div>
 </BaseLayout>
 
