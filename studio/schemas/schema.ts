@@ -22,10 +22,10 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     // article,
-    author,
-    category,
-    page,
     post,
+    page,
+    category,
+    author,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent
