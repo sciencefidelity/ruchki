@@ -13,7 +13,12 @@ const response = await sanityClient.fetch(query)
 const data = await response
 
 const title = "Blog"
-const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+}
 ---
 <BaseLayout title={title}>
   <div>

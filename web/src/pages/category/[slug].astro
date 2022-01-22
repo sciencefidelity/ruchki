@@ -26,11 +26,15 @@ export async function getStaticPaths() {
 const { slug } = Astro.request.params
 const { category } = Astro.props
 
-const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long", day: "numeric"
+}
 ---
 <BaseLayout title={category.title}>
   <div>
-    <h1>{category.title}</h1>
+    <h1>Category: {category.title}</h1>
     <br>
     <h2>Posts</h2>
     <ul>

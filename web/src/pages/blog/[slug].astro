@@ -5,16 +5,16 @@ import sanityClient from "../../sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
 
 export async function getStaticPaths({ paginate }) {
-  const query = groq`*[_type == "post"] | order(_createdAt asc) {
-    _createdAt,
+  const query = groq`*[_type == "post"] {
     author->,
     body,
     "categories": categories[]->,
+    publishedAt,
     "slug": slug.current,
     title
   }`
   const data = await sanityClient.fetch(query).then(response => response)
-  return data.map((post) => {
+  return data.map(post => {
     return {
       params: { slug: post.slug },
       props: { post }
@@ -25,8 +25,15 @@ export async function getStaticPaths({ paginate }) {
 const { slug } = Astro.request.params
 const { post } = Astro.props
 
-const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" }
-const date = new Date(post._createdAt).toLocaleDateString("en-GB", options)
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+}
+const date = new Date(post.publishedAt).toLocaleDateString("en-GB", options)
+
+console.log(post.categories.map(item => item.title).join(", "))
 ---
 <BaseLayout title={post.title}>
   <div>
@@ -35,9 +42,8 @@ const date = new Date(post._createdAt).toLocaleDateString("en-GB", options)
     <p>by:
       <a href=`/author/${post.author.slug.current}`>{post.author.name}</a>
     </p>
-    <br>
     <ul>
-      {post.categories.map((item, index) =>
+      in: {post.categories.map(item =>
         <li><a href=`/category/${item.slug.current}`>{item.title}</a></li>
       )}
     </ul>
@@ -47,6 +53,11 @@ const date = new Date(post._createdAt).toLocaleDateString("en-GB", options)
 </BaseLayout>
 
 <!-- prettier-ignore -->
-<style>
-
+<style lang="scss">
+li {
+  display: inline;
+  &:not(:last-child)::after {
+    content: ', ';
+  }
+}
 </style>
