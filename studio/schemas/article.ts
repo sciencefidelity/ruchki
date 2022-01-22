@@ -5,11 +5,11 @@ export default {
   groups: [
     {
       name: 'content',
-      title: 'Content',
+      title: 'Content'
     },
     {
       name: 'seo',
-      title: 'SEO',
+      title: 'SEO'
     },
   ],
   fields: [
@@ -34,7 +34,7 @@ export default {
       title: 'Main image',
       type: 'image',
       options: {
-        hotspot: true,
+        hotspot: true
       },
       group: 'content'
     },
@@ -67,12 +67,12 @@ export default {
       title: 'Image',
       type: 'image',
       group: 'seo'
-    },
+    }
   ],
   preview: {
     select: {
       title: 'title',
-      media: 'mainImage',
-    },
-  },
+      media: 'mainImage'
+    }
+  }
 }
