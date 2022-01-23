@@ -1,8 +1,19 @@
 ---
+import groq from "groq"
+import sanityClient from "../sanityClient"
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
 import Navbar from "../components/Navbar.astro"
 import "../styles/global.scss"
+
+const query = groq`*[_type == "site"][0]{
+  "keywords": seoKeywords,
+  siteDescription,
+  siteName
+}`
+
+const response = await sanityClient.fetch(query)
+const data = await response
 
 const {
   title,
@@ -20,9 +31,9 @@ const {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <title>{title} | {siteName || "In Our Hands"}</title>
-  <meta name="description" content={seoDescription}>
-  <meta name="keywords" content={keywords}>
+  <title>{title} | {siteName || data.siteName}</title>
+  <meta name="description" content={seoDescription || data.siteDescription}>
+  <meta name="keywords" content={keywords || data.keywords}>
 
   {seoTitle !== undefined && <meta property="og:title" content={seoTitle}>}
   {seoDescription !== undefined && <meta property="og:description" content={seoDescription}>}
