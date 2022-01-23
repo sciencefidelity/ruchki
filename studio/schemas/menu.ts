@@ -1,5 +1,5 @@
 export default {
-  name: 'manu',
+  name: 'menu',
   title: 'Menu',
   type: 'document',
   fields: [
@@ -9,8 +9,8 @@ export default {
       type: 'string'
     },
     {
-      name: 'categories',
-      title: 'Categories',
+      name: 'items',
+      title: 'Manu Items',
       type: 'array',
       of: [{ type: 'reference', to: {type: 'page' }}],
       sortable: true
