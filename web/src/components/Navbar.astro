@@ -2,9 +2,11 @@
 import groq from "groq"
 import sanityClient from "../sanityClient"
 
-const query = groq`*[_type == "page"]{
-  "slug": slug.current,
-  title
+const query = groq`*[_type == "menu"][0]{
+  "item": items[]->{
+    "slug": slug.current,
+    title
+  }
 }`
 
 const response = await sanityClient.fetch(query)
@@ -12,12 +14,9 @@ const data = await response
 ---
 <nav class="nav">
   <ul>
-    <a href="/"><li>Home</li></a>
-    {data.map(item =>
+    {data.item.map(item =>
       <li><a href=`/${item.slug}`>{item.title}</a></li>
     )}
-    <a href="/blog"><li>Blog</li></a>
-    <a href="/contact-us"><li>Contact us</li></a>
   </ul>
 </nav>
 
