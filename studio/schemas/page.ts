@@ -30,6 +30,25 @@ export default {
       group: 'content'
     },
     {
+      name: 'template',
+      title: 'Template',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'grid',
+        list: [
+          { title: 'Article', value: 'article' },
+          { title: 'Blog', value: 'blog' },
+          { title: 'Contact Us', value: 'contact' }
+        ]
+      },
+      initialValue: {
+        title: 'Article',
+        value: 'article'
+      },
+      validation: (Rule: any) => Rule.required()
+    },
+    {
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
