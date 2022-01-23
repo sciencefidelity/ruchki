@@ -1,15 +1,15 @@
 ---
 import { Markdown } from "astro/components"
 import BaseLayout from "../layouts/BaseLayout.astro"
+import ContactForm from "../components/ContactForm.astro"
 
 const title = "Contact us"
 ---
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
-    <Markdown>
-
-    </Markdown>
+    <br>
+    <ContactForm />
   </div>
 </BaseLayout>
 

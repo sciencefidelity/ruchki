@@ -3,6 +3,7 @@ import { Markdown } from "astro/components"
 import groq from "groq"
 import sanityClient from "../../sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
+import { dateOptions } from "../../lib/utils"
 
 export async function getStaticPaths() {
   const query = groq`*[_type == "post"]{
@@ -28,14 +29,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.request.params
 const { post } = Astro.props
-
-const options = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-}
-const date = new Date(post.publishedAt).toLocaleDateString("en-GB", options)
+const date = new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions)
 ---
 <BaseLayout
   title={post.title}

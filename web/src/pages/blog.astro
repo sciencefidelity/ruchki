@@ -2,23 +2,16 @@
 import groq from "groq"
 import sanityClient from "../sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
+import { dateOptions } from "../lib/utils"
 
 const query = groq`*[_type == "post"] | order(publishedAt desc){
   publishedAt,
   "slug": slug.current,
   title
 }`
-
 const response = await sanityClient.fetch(query)
 const data = await response
-
 const title = "Blog"
-const options = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-}
 ---
 <BaseLayout title={title}>
   <div>
@@ -27,7 +20,7 @@ const options = {
     <ul>
       {data.map(item =>
         <li><a href=`/blog/${item.slug}`>{item.title}</a><br>
-          {new Date(item.publishedAt).toLocaleDateString("en-GB", options)}
+          {new Date(item.publishedAt).toLocaleDateString("en-GB", dateOptions)}
         </li>
       )}
     </ul>

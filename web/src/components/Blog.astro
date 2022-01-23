@@ -1,0 +1,20 @@
+---
+import groq from "groq"
+import sanityClient from "../sanityClient"
+import { dateOptions } from "../lib/utils"
+
+const query = groq`*[_type == "post"] | order(publishedAt desc){
+  publishedAt,
+  "slug": slug.current,
+  title
+}`
+const response = await sanityClient.fetch(query)
+const data = await response
+---
+<ul>
+  {data.map(item =>
+    <li><a href=`/blog/${item.slug}`>{item.title}</a><br>
+      {new Date(item.publishedAt).toLocaleDateString("en-GB", dataOptions)}
+    </li>
+  )}
+</ul>
