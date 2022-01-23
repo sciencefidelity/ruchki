@@ -6,7 +6,7 @@ import BaseLayout from "../layouts/BaseLayout.astro"
 import Featured from "../components/Featured.astro"
 import Latest from "../components/Latest.astro"
 
-const query = groq`*[_type == "home"]{
+const query = groq`*[_type == "home"][0]{
   body,
   title
 }`
