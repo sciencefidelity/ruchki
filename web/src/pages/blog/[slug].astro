@@ -5,13 +5,19 @@ import sanityClient from "../../sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
 
 export async function getStaticPaths() {
-  const query = groq`*[_type == "post"] {
+  const query = groq`*[_type == "post"]{
     author->,
     body,
     "categories": categories[]->,
     publishedAt,
+    seoDescription,
+    seoImage,
+    seoKeywords,
+    seoTitle,
     "slug": slug.current,
-    title
+    title,
+    "siteName": *[_type == "site"][0].siteName,
+    "twitterHandle": *[_type == "site"][0].twitterHandle
   }`
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(post => {
@@ -33,7 +39,16 @@ const options = {
 }
 const date = new Date(post.publishedAt).toLocaleDateString("en-GB", options)
 ---
-<BaseLayout title={post.title}>
+<BaseLayout
+  title={post.title}
+  seoDescription={post.seoDescription}
+  keywords={post.seoKeywords}
+  seoTitle={post.seoTitle}
+  siteDescription={post.siteDescription}
+  siteName={post.siteName}
+  slug={post.slug}
+  twitterHandle={post.twitterHandle}
+>
   <div>
     <h1>{post.title}</h1>
     <p>published on: {date}</p>
