@@ -3,7 +3,7 @@ import groq from "groq"
 import sanityClient from "../sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
-const query = groq`*[_type == "site"]{
+const query = groq`*[_type == "site"][0]{
   seoDescription,
   seoKeywords,
   seoTitle,
@@ -16,6 +16,7 @@ const response = await sanityClient.fetch(query)
 const data = await response
 
 const title = "Home"
+const slug = "/"
 ---
 <BaseLayout
   title={title}
@@ -24,6 +25,7 @@ const title = "Home"
   seoTitle={data.seoTitle}
   siteDescription={data.siteDescription}
   siteName={data.siteName}
+  slug={slug}
   twitterHandle={data.twitterHandle}
 >
   <section>

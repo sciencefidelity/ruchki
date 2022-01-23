@@ -14,7 +14,7 @@ const data = await response
   <ul>
     <a href="/"><li>Home</li></a>
     {data.map(item =>
-      <li><a href={item.slug}>{item.title}</a></li>
+      <li><a href=`/${item.slug}`>{item.title}</a></li>
     )}
     <a href="/blog"><li>Blog</li></a>
     <a href="/contact-us"><li>Contact us</li></a>

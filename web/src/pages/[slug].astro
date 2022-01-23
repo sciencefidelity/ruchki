@@ -8,7 +8,13 @@ export async function getStaticPaths() {
   const query = groq`*[_type == "page"]{
     body,
     "slug": slug.current,
-    title
+    seoDescription,
+    seoImage,
+    seoKeywords,
+    seoTitle,
+    title,
+    "siteName": *[_type == "site"][0].siteName,
+    "twitterHandle": *[_type == "site"][0].twitterHandle
   }`
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(page => {
@@ -22,7 +28,16 @@ export async function getStaticPaths() {
 const { slug } = Astro.request.params
 const { page } = Astro.props
 ---
-<BaseLayout title={page.title}>
+<BaseLayout
+  title={page.title}
+  seoDescription={page.seoDescription}
+  keywords={page.seoKeywords}
+  seoTitle={page.seoTitle}
+  siteDescription={page.siteDescription}
+  siteName={page.siteName}
+  slug={page.slug}
+  twitterHandle={page.twitterHandle}
+>
   <div>
     <h1>{page.title}</h1>
     <br>
