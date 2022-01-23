@@ -9,6 +9,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import author from './author'
 import blockContent from './blockContent'
 import category from './category'
+import home from './home'
 import menu from './menu'
 import page from './page'
 import post from './post'
@@ -26,6 +27,7 @@ export default createSchema({
     // article,
     post,
     page,
+    home,
     site,
     menu,
     category,
