@@ -27,9 +27,9 @@ const { slug } = Astro.request.params
 const { author } = Astro.props
 const metaTitle = `Author: ${author.name}`
 ---
-<BaseLayout title={metaTitle}>
+<BaseLayout title={title}>
   <div>
-    <h1>Author: {author.name}</h1>
+    <h1>{title}</h1>
     <br>
     <h2>Bio</h2>
     <Markdown>{author.bio}</Markdown>

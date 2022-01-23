@@ -23,14 +23,13 @@ export async function getStaticPaths() {
     }
   })
 }
-
 const { slug } = Astro.request.params
 const { category } = Astro.props
-const metaTitle = `Category: ${category.title}`
+const title = `Category: ${category.title}`
 ---
-<BaseLayout title={metaTitle}>
+<BaseLayout title={title}>
   <div>
-    <h1>Category: {category.title}</h1>
+    <h1>{title}</h1>
     <br>
     <ul>
       {category.posts.map(item =>
