@@ -15,9 +15,7 @@ export async function getStaticPaths() {
     seoKeywords,
     seoTitle,
     "slug": slug.current,
-    title,
-    "siteName": *[_type == "site"][0].siteName,
-    "twitterHandle": *[_type == "site"][0].twitterHandle
+    title
   }`
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(post => {
@@ -44,10 +42,8 @@ const date = new Date(post.publishedAt).toLocaleDateString("en-GB", options)
   seoDescription={post.seoDescription}
   keywords={post.seoKeywords}
   seoTitle={post.seoTitle}
-  siteDescription={post.siteDescription}
-  siteName={post.siteName}
   slug={post.slug}
-  twitterHandle={post.twitterHandle}
+  twitterHandle={post.author.twitterHandle}
 >
   <div>
     <h1>{post.title}</h1>
