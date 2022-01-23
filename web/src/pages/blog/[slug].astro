@@ -31,7 +31,6 @@ const { slug } = Astro.request.params
 const { post } = Astro.props
 const date = new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions)
 const tags = post.seoKeywords.split(", ")
-console.log(tags)
 ---
 <BaseLayout
   title={post.title}
@@ -54,7 +53,7 @@ console.log(tags)
     </ul>
     <p>tags: {tags.join(", ")}</p>
     <br>
-    <Markdown>{post.body}</Markdown>
+    <Markdown>{post.body.replaceAll("https://in-our-hands.com", "")}</Markdown>
   </div>
 </BaseLayout>
 

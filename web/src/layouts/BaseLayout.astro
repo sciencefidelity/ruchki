@@ -15,10 +15,8 @@ const query = groq`*[_type == "site"][0]{
   siteName,
   twitterHandle
 }`
-
 const response = await sanityClient.fetch(query)
 const data = await response
-
 const {
   title,
   keywords,
@@ -29,7 +27,6 @@ const {
   twitter,
   twitterHandle
 } = Astro.props
-
 const seoTitleJoined = seoTitle ? `${seoTitle} ${seoDescription}` : data.siteDescription
 const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
 ---

@@ -25,7 +25,7 @@ export async function getStaticPaths( ) {
 
 const { slug } = Astro.request.params
 const { author } = Astro.props
-const metaTitle = `Author: ${author.name}`
+const title = `Author: ${author.name}`
 ---
 <BaseLayout title={title}>
   <div>
