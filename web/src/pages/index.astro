@@ -1,10 +1,31 @@
 ---
-// Component Imports
+import groq from "groq"
+import sanityClient from "../sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
+
+const query = groq`*[_type == "site"]{
+  seoDescription,
+  seoKeywords,
+  seoTitle,
+  siteDescription,
+  siteName,
+  twitterHandle
+}`
+
+const response = await sanityClient.fetch(query)
+const data = await response
 
 const title = "Home"
 ---
-<BaseLayout title={title}>
+<BaseLayout
+  title={title}
+  seoDescription={data.seoDescription}
+  keywords={data.seoKeywords}
+  seoTitle={data.seoTitle}
+  siteDescription={data.siteDescription}
+  siteName={data.siteName}
+  twitterHandle={data.twitterHandle}
+>
   <section>
     <h1>{title}</h1>
   </section>
