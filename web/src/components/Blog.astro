@@ -14,7 +14,7 @@ const data = await response
 <ul>
   {data.map(item =>
     <li><a href=`/blog/${item.slug}`>{item.title}</a><br>
-      {new Date(item.publishedAt).toLocaleDateString("en-GB", dataOptions)}
+      {new Date(item.publishedAt).toLocaleDateString("en-GB", dateOptions)}
     </li>
   )}
 </ul>
