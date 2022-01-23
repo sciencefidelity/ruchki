@@ -3,7 +3,7 @@ import { Markdown } from "astro/components"
 import groq from "groq"
 import sanityClient from "../../sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import { dateOptions } from "../../lib/utils"
+import { dateOptions, kebabCase } from "../../lib/utils"
 
 export async function getStaticPaths() {
   const query = groq`*[_type == "post"]{
@@ -51,7 +51,11 @@ const tags = post.seoKeywords.split(", ")
         <li><a href="/category/${item.slug.current}">{item.title}</a></li>
       )}
     </ul>
-    <p>tags: {tags.join(", ")}</p>
+    <ul>
+      tags: {tags.map(tag =>
+        <li><a href="/tag/${kebabCase(tag)}">{tag}</a></li>
+      )}
+    </ul>
     <br>
     <Markdown>{post.body.replaceAll("https://in-our-hands.com", "")}</Markdown>
   </div>
