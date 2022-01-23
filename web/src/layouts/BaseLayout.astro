@@ -43,7 +43,7 @@ const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
 
   <meta property="og:title" content={socialTitleJoined}>
   <meta property="og:description" content={seoDescription || data.seoDescription}>
-  <meta property="og:url" content=`https://in-our-hands.com/${slug || ""}`>
+  <meta property="og:url" content="https://in-our-hands.com/${slug || ''}">
   <meta property="og:image" content={seoImage || data.seoImage}>
   <meta property="og:site_name" content={data.siteName}>
   <meta property="og:locale" content="en_GB">
@@ -58,18 +58,19 @@ const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
 
   <link
     rel="icon"
-    href="data:image/svg+xml,
+    href=`data:image/svg+xml,
       <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
         <text y=%22.9em%22 font-size=%2290%22>✋</text>
-      </svg>"
+      </svg>
+    `
   >
-  <link rel="stylesheet" href={Astro.resolve('../styles/global.scss')}>
+  <link rel="stylesheet" href={Astro.resolve("../styles/global.scss")}>
 
 </head>
 <body>
   <div id="app">
     <div>
-      <Header />
+      <Header siteName={data.siteName} />
       <br>
       <Navbar />
       <br>
@@ -78,7 +79,7 @@ const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
       <slot />
     </main>
     <br>
-    <Footer />
+    <Footer siteName={data.siteName} />
   </div>
 </body>
 

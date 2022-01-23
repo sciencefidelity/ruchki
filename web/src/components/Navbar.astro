@@ -8,7 +8,6 @@ const query = groq`*[_type == "menu"][0]{
     title
   }
 }`
-
 const response = await sanityClient.fetch(query)
 const data = await response
 ---

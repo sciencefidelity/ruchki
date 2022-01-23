@@ -13,8 +13,6 @@ const data = await response
 const title = "All Tags"
 
 const tags = [...new Set(data.map(e => e.seoKeywords.split(", ")).flat(1).sort())]
-
-console.log(data)
 ---
 <BaseLayout title={title}>
   <div>
@@ -22,7 +20,7 @@ console.log(data)
     <br>
     <ul>
       {tags.map(tag =>
-        <li><a href=`/tag/${kebabCase(tag)}`>{tag}</a></li>
+        <li><a href="/tag/${kebabCase(tag)}">{tag}</a></li>
       )}
     </ul>
   </div>

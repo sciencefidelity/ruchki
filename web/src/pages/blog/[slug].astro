@@ -45,11 +45,11 @@ console.log(tags)
     <h1>{post.title}</h1>
     <p>published on: {date}</p>
     <p>by:
-      <a href=`/author/${post.author.slug.current}`>{post.author.name}</a>
+      <a href="/author/${post.author.slug.current}">{post.author.name}</a>
     </p>
     <ul>
       in: {post.categories.map(item =>
-        <li><a href=`/category/${item.slug.current}`>{item.title}</a></li>
+        <li><a href="/category/${item.slug.current}">{item.title}</a></li>
       )}
     </ul>
     <p>tags: {tags.join(", ")}</p>
