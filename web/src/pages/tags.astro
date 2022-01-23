@@ -7,12 +7,10 @@ import { kebabCase } from "../lib/utils"
 const query = groq`*[_type == "post"]{
   seoKeywords
 }`
-
 const response = await sanityClient.fetch(query)
 const data = await response
-const title = "All Tags"
-
 const tags = [...new Set(data.map(e => e.seoKeywords.split(", ")).flat(1).sort())]
+const title = "All Tags"
 ---
 <BaseLayout title={title}>
   <div>
