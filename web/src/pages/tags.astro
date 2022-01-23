@@ -1,0 +1,34 @@
+---
+import groq from "groq"
+import sanityClient from "../sanityClient"
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { kebabCase } from "../lib/utils"
+
+const query = groq`*[_type == "post"]{
+  seoKeywords
+}`
+
+const response = await sanityClient.fetch(query)
+const data = await response
+const title = "All Tags"
+
+const tags = [...new Set(data.map(e => e.seoKeywords.split(", ")).flat(1).sort())]
+
+console.log(data)
+---
+<BaseLayout title={title}>
+  <div>
+    <h1>{title}</h1>
+    <br>
+    <ul>
+      {tags.map(tag =>
+        <li><a href=`/tag/${kebabCase(tag)}`>{tag}</a></li>
+      )}
+    </ul>
+  </div>
+</BaseLayout>
+
+<!-- prettier-ignore -->
+<style>
+
+</style>

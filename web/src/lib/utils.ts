@@ -7,3 +7,6 @@ export const dateOptions = {
   month: "long",
   day: "numeric"
 }
+
+export const kebabCase = (word: string): string =>
+  word.toLowerCase().split(" ").join("-").replace(/[^a-z0-9\-]/g, "")

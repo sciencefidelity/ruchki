@@ -30,6 +30,8 @@ export async function getStaticPaths() {
 const { slug } = Astro.request.params
 const { post } = Astro.props
 const date = new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions)
+const tags = post.seoKeywords.split(", ")
+console.log(tags)
 ---
 <BaseLayout
   title={post.title}
@@ -50,6 +52,7 @@ const date = new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions)
         <li><a href=`/category/${item.slug.current}`>{item.title}</a></li>
       )}
     </ul>
+    <p>tags: {tags.join(", ")}</p>
     <br>
     <Markdown>{post.body}</Markdown>
   </div>
