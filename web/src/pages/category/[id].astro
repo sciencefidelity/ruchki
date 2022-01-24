@@ -18,13 +18,13 @@ export async function getStaticPaths() {
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(category => {
     return {
-      params: { slug: category.slug },
+      params: { id: category.slug },
       props: { category }
     }
   })
 }
 
-const { slug } = Astro.request.params
+const { id } = Astro.request.params
 const { category } = Astro.props
 const title = `Category: ${category.title}`
 ---

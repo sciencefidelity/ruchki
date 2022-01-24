@@ -17,13 +17,13 @@ export async function getStaticPaths( ) {
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(author => {
     return {
-      params: { slug: author.slug },
+      params: { id: author.slug },
       props: { author }
     }
   })
 }
 
-const { slug } = Astro.request.params
+const { id } = Astro.request.params
 const { author } = Astro.props
 const title = `Author: ${author.name}`
 ---

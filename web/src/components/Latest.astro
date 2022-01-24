@@ -10,7 +10,6 @@ const query = groq`*[_type == "post"] | order(publishedAt desc)[0..2]{
 }`
 const response = await sanityClient.fetch(query)
 const data = await response
-console.log(data)
 ---
 <section>
 <h2>Latest Posts</h2>

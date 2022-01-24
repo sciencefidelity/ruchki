@@ -21,13 +21,13 @@ export async function getStaticPaths() {
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(post => {
     return {
-      params: { slug: post.slug },
+      params: { id: post.slug },
       props: { post }
     }
   })
 }
 
-const { slug } = Astro.request.params
+const { id } = Astro.request.params
 const { post } = Astro.props
 const date = new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions)
 const tags = post.seoKeywords.split(", ")

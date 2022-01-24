@@ -13,12 +13,12 @@ export async function getStaticPaths() {
   const tags = [...new Set(data.map(e => e.seoKeywords.split(", ")).flat(1).sort())]
   return tags.map(tag => {
     return {
-      params: { slug: kebabCase(tag) },
+      params: { id: kebabCase(tag) },
       props: { tag }
     }
   })
 }
-const { slug } = Astro.request.params
+const { id } = Astro.request.params
 const { tag } = Astro.props
 const title = `Tag: ${tag}`
 ---
