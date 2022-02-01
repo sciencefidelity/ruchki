@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@sanity/client": "^2.23.2",
-    "astro": "^0.22.17",
+    "astro": "^0.22.20",
     "autoprefixer": "^10.4.2",
     "concurrently": "^7.0.0",
     "groq": "^2.15.0",
