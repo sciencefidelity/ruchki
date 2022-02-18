@@ -53,14 +53,8 @@ const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
   <meta name="twitter:image" content={seoImage || data.seoImage}>
   {twitterHandle !== undefined && <meta name="twitter:creator" content={twitterHandle}>}
 
-  <link
-    rel="icon"
-    href=`data:image/svg+xml,
-      <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
-        <text y=%22.9em%22 font-size=%2290%22>✋</text>
-      </svg>
-    `
-  >
+  <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+  <link rel="mask-icon" href="/mask-icon.svg" color="#FFDC5D" />
   <link rel="stylesheet" href={Astro.resolve("../styles/global.scss")}>
 
 </head>
