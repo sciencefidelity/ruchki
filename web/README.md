@@ -1,3 +1,3 @@
 # In Our Hands
 
-Powered by [Astro](https://astro.build/).
+A site placeholder build with [Astro](https://astro.build).

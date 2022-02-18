@@ -1,0 +1,86 @@
+---
+import groq from "groq"
+import sanityClient from "../sanityClient"
+import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro"
+import Navbar from "../components/Navbar.astro"
+import "../styles/global.scss"
+
+const query = groq`*[_type == "site"][0]{
+  seoDescription,
+  seoImage,
+  "keywords": seoKeywords,
+  seoTitle,
+  siteDescription,
+  siteName,
+  twitterHandle
+}`
+const response = await sanityClient.fetch(query)
+const data = await response
+const {
+  title,
+  keywords,
+  slug,
+  seoTitle,
+  seoDescription,
+  seoImage,
+  twitter,
+  twitterHandle
+} = Astro.props
+const seoTitleJoined = seoTitle ? `${seoTitle} ${seoDescription}` : data.siteDescription
+const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{title} | {data.siteName}</title>
+  <meta name="description" content={seoTitleJoined}>
+  <meta name="keywords" content={keywords || data.keywords}>
+
+  <meta property="og:title" content={socialTitleJoined}>
+  <meta property="og:description" content={seoDescription || data.seoDescription}>
+  <meta property="og:url" content="https://in-our-hands.com/${slug || ''}">
+  <meta property="og:image" content={seoImage || data.seoImage}>
+  <meta property="og:site_name" content={data.siteName}>
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:type" content="article">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={socialTitleJoined}>
+  <meta name="twitter:description" content={seoDescription || data.seoDescription}>
+  <meta name="twitter:site" content={data.twitterHandle}>
+  <meta name="twitter:image" content={seoImage || data.seoImage}>
+  {twitterHandle !== undefined && <meta name="twitter:creator" content={twitterHandle}>}
+
+  <link
+    rel="icon"
+    href=`data:image/svg+xml,
+      <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
+        <text y=%22.9em%22 font-size=%2290%22>✋</text>
+      </svg>
+    `
+  >
+  <link rel="stylesheet" href={Astro.resolve("../styles/global.scss")}>
+
+</head>
+<body>
+  <div id="app">
+    <div>
+      <Header siteName={data.siteName} />
+      <br>
+      <Navbar />
+      <br>
+    </div>
+    <main>
+      <slot />
+    </main>
+    <br>
+    <Footer siteName={data.siteName} />
+  </div>
+</body>
+
+<!-- prettier-ignore -->
+<style>
+
+</style>

@@ -1,13 +1,22 @@
 ---
-const { siteName } = Astro.props
-const year = new Date().getFullYear()
+const year = new Date().getFullYear().toString()
 ---
 
-<footer>
-  <p>&copy; {year} {siteName}</p>
+<footer class=" center vw-100 p-small">
+  <p class="footer__text">&copy; In Our Hands {year}</p>
 </footer>
 
 <!-- prettier-ignore -->
-<style>
+<style lang="scss">
+  @use '../styles/foundation/breakpoints' as b;
 
+  .footer__text {
+    font-size: 2rem;
+    @include b.mq(lg) {
+      font-size: 1.75rem;
+    }
+    @include b.mq(sm) {
+      font-size: 1.5rem;
+    }
+  }
 </style>

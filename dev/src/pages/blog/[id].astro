@@ -1,0 +1,72 @@
+---
+import { Markdown } from "astro/components"
+import groq from "groq"
+import sanityClient from "../../sanityClient"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import { dateOptions, kebabCase } from "../../lib/utils"
+
+export async function getStaticPaths() {
+  const query = groq`*[_type == "post"]{
+    author->,
+    body,
+    "categories": categories[]->,
+    publishedAt,
+    seoDescription,
+    seoImage,
+    seoKeywords,
+    seoTitle,
+    "slug": slug.current,
+    title
+  }`
+  const data = await sanityClient.fetch(query).then(response => response)
+  return data.map(post => {
+    return {
+      params: { id: post.slug },
+      props: { post }
+    }
+  })
+}
+
+const { id } = Astro.request.params
+const { post } = Astro.props
+const date = new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions)
+const tags = post.seoKeywords.split(", ")
+---
+<BaseLayout
+  title={post.title}
+  seoDescription={post.seoDescription}
+  keywords={post.seoKeywords}
+  seoTitle={post.seoTitle}
+  slug={post.slug}
+  twitterHandle={post.author.twitterHandle}
+>
+  <div>
+    <h1>{post.title}</h1>
+    <p>published on: {date}</p>
+    <p>by:
+      <a href="/author/${post.author.slug.current}">{post.author.name}</a>
+    </p>
+    <ul>
+      in: {post.categories.map(item =>
+        <li><a href="/category/${item.slug.current}">{item.title}</a></li>
+      )}
+    </ul>
+    <ul>
+      tags: {tags.map(tag =>
+        <li><a href="/tag/${kebabCase(tag)}">{tag}</a></li>
+      )}
+    </ul>
+    <br>
+    <Markdown>{post.body.replaceAll("https://in-our-hands.com", "")}</Markdown>
+  </div>
+</BaseLayout>
+
+<!-- prettier-ignore -->
+<style lang="scss">
+li {
+  display: inline;
+  &:not(:last-child)::after {
+    content: ', ';
+  }
+}
+</style>

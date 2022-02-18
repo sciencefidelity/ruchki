@@ -1,21 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
-
-const title = "four-oh-four"
+const title = "404"
 ---
 <BaseLayout title={title}>
-  <div class={title}>
-    <h1>404 Not Found</h1>
-    <p>
-      You've hit a path that does not exist,
-      <br />
-      oh the sadness!
-    </p>
-    <a href="/">Home</a>
+  <div class="sans center">
+    <h1>Not Found</h1>
+    <p>This path does not exist.</p>
+    <a href="/">home</a>
   </div>
 </BaseLayout>
-
-<!-- prettier-ignore -->
-<style>
-
-</style>
