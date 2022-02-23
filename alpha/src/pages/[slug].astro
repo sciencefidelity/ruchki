@@ -1,7 +1,7 @@
 ---
 import { Markdown } from "astro/components"
 import groq from "groq"
-import sanityClient from "../sanityClient"
+import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Blog from "../components/Blog.astro"
 import Contact from "../components/Contact.astro"
@@ -20,13 +20,13 @@ export async function getStaticPaths() {
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(page => {
     return {
-      params: { id: page.slug },
+      params: { slug: page.slug },
       props: { page }
     }
   })
 }
 
-const { id } = Astro.request.params
+const { slug } = Astro.request.params
 const { page } = Astro.props
 ---
 <BaseLayout
@@ -52,5 +52,7 @@ const { page } = Astro.props
 
 <!-- prettier-ignore -->
 <style>
-
+h1 {
+  color: hsl(188, 95%, 29%);
+}
 </style>

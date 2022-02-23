@@ -1,6 +1,6 @@
 ---
 import groq from "groq"
-import sanityClient from "../sanityClient"
+import sanityClient from "../lib/sanityClient"
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
 import Navbar from "../components/Navbar.astro"
@@ -31,48 +31,49 @@ const seoTitleJoined = seoTitle ? `${seoTitle} ${seoDescription}` : data.siteDes
 const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
 ---
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>{title} | {data.siteName}</title>
-  <meta name="description" content={seoTitleJoined}>
-  <meta name="keywords" content={keywords || data.keywords}>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{title} | {data.siteName}</title>
+    <meta name="description" content={seoTitleJoined}>
+    <meta name="keywords" content={keywords || data.keywords}>
 
-  <meta property="og:title" content={socialTitleJoined}>
-  <meta property="og:description" content={seoDescription || data.seoDescription}>
-  <meta property="og:url" content="https://in-our-hands.com/${slug || ''}">
-  <meta property="og:image" content={seoImage || data.seoImage}>
-  <meta property="og:site_name" content={data.siteName}>
-  <meta property="og:locale" content="en_GB">
-  <meta property="og:type" content="article">
+    <meta property="og:title" content={socialTitleJoined}>
+    <meta property="og:description" content={seoDescription || data.seoDescription}>
+    <meta property="og:url" content="https://in-our-hands.com/${slug || ''}">
+    <meta property="og:image" content={seoImage || data.seoImage}>
+    <meta property="og:site_name" content={data.siteName}>
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:type" content="article">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content={socialTitleJoined}>
-  <meta name="twitter:description" content={seoDescription || data.seoDescription}>
-  <meta name="twitter:site" content={data.twitterHandle}>
-  <meta name="twitter:image" content={seoImage || data.seoImage}>
-  {twitterHandle !== undefined && <meta name="twitter:creator" content={twitterHandle}>}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={socialTitleJoined}>
+    <meta name="twitter:description" content={seoDescription || data.seoDescription}>
+    <meta name="twitter:site" content={data.twitterHandle}>
+    <meta name="twitter:image" content={seoImage || data.seoImage}>
+    {twitterHandle !== undefined && <meta name="twitter:creator" content={twitterHandle}>}
 
-  <link rel="icon" type="image/x-icon" href="/favicon.svg" />
-  <link rel="mask-icon" href="/mask-icon.svg" color="#FFDC5D" />
-  <link rel="stylesheet" href={Astro.resolve("../styles/global.scss")}>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+    <link rel="mask-icon" href="/mask-icon.svg" color="#FFDC5D" />
+    <link rel="stylesheet" href={Astro.resolve("../styles/global.scss")}>
 
-</head>
-<body>
-  <div id="app">
-    <div>
-      <Header siteName={data.siteName} />
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <Header siteName={data.siteName} />
+        <br>
+        <Navbar />
+        <br>
+      </div>
+      <main>
+        <slot />
+      </main>
       <br>
-      <Navbar />
-      <br>
+      <Footer siteName={data.siteName} />
     </div>
-    <main>
-      <slot />
-    </main>
-    <br>
-    <Footer siteName={data.siteName} />
-  </div>
-</body>
+  </body>
+</html>
 
 <!-- prettier-ignore -->
 <style>
