@@ -8,7 +8,7 @@ export const indexQuery = groq`{
 }`
 
 export const pageQuery = groq`{
-  "page": *[_type == "site"][0]{
+  "site": *[_type == "site"][0]{
     seoDescription,
     seoImage,
     "keywords": seoKeywords,
