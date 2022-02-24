@@ -1,13 +1,5 @@
-/**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
- *    name: 'someName',
- *    title: 'Some title',
- *    type: 'blockContent'
- *  }
- */
+import * as React from 'react'
+
 export default {
   title: 'Block Content',
   name: 'blockContent',
@@ -16,29 +8,42 @@ export default {
     {
       title: 'Block',
       type: 'block',
-      // Styles let you set what your user can mark up blocks with. These
-      // correspond with HTML tags, but you can set any title or value
-      // you want and decide how you want to deal with it where you want to
-      // use your content.
       styles: [
-        {title: 'Normal', value: 'normal'},
-        {title: 'H1', value: 'h1'},
-        {title: 'H2', value: 'h2'},
-        {title: 'H3', value: 'h3'},
-        {title: 'H4', value: 'h4'},
-        {title: 'Quote', value: 'blockquote'}
+        { title: 'Normal', value: 'normal' },
+        { title: 'H1', value: 'h1' },
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+        { title: 'H4', value: 'h4' },
+        { title: 'Quote', value: 'blockquote' }
       ],
-      lists: [{title: 'Bullet', value: 'bullet'}],
-      // Marks let you mark up inline text in the block editor.
+      lists: [{ title: 'Bullet', value: 'bullet' }],
       marks: {
-        // Decorators usually describe a single property – e.g. a typographic
-        // preference or highlighting by editors.
         decorators: [
-          {title: 'Strong', value: 'strong'},
-          {title: 'Emphasis', value: 'em'}
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' }
         ],
-        // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
+          {
+            title: 'Internal Link',
+            name: 'internalLink',
+            type: 'object',
+            fields: [
+              {
+                name: 'item',
+                type: 'reference',
+                to: [
+                  { type: 'author' },
+                  { type: 'page' },
+                  { type: 'post' },
+                  { type: 'section' },
+                  { type: 'video' }
+                ]
+              }
+            ],
+            blockEditor: {
+              icon: () => '🔗'
+            }
+          },
           {
             title: 'URL',
             name: 'link',
@@ -48,18 +53,23 @@ export default {
                 title: 'URL',
                 name: 'href',
                 type: 'url'
+              },
+              {
+                title: 'Open in a new window',
+                name: 'blank',
+                type: 'boolean'
               }
-            ]
+            ],
+            blockEditor: {
+              icon: () => '🌎'
+            }
           }
         ]
       }
     },
-    // You can add additional types here. Note that you can't use
-    // primitive types such as 'string' and 'number' in the same array
-    // as a block type.
     {
       type: 'image',
-      options: {hotspot: true}
+      options: { hotspot: true }
     }
   ]
 }

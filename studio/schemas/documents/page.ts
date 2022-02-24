@@ -1,3 +1,6 @@
+/** @type {import("@sanity/types") */
+import { Rule } from "@sanity/types"
+
 export default {
   name: 'page',
   title: 'Page',
@@ -46,7 +49,7 @@ export default {
         title: 'Article',
         value: 'article'
       },
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule: Rule) => Rule.required()
     },
     {
       name: 'mainImage',
@@ -60,7 +63,7 @@ export default {
     {
       name: 'body',
       title: 'Body',
-      type: 'markdown',
+      type: 'blockContent',
       group: 'content'
     },
     {
@@ -68,7 +71,7 @@ export default {
       title: 'SEO title',
       type: 'string',
       description: 'Displayed on Facebook and Twitter shares (max 60 characters).',
-      validation: (Rule: any) => Rule.max(60).warning('Only 60 characters will be visible.'),
+      validation: (Rule: Rule) => Rule.max(60).warning('Only 60 characters will be visible.'),
       group: 'seo'
     },
     {
@@ -76,7 +79,7 @@ export default {
       title: 'SEO description',
       type: 'string',
       description: 'Displayed on Facebook and Twitter shares (max 65 characters).',
-      validation: (Rule: any) => Rule.max(65).warning('Only 65 characters will be visible.'),
+      validation: (Rule: Rule) => Rule.max(65).warning('Only 65 characters will be visible.'),
       group: 'seo'
     },
     {

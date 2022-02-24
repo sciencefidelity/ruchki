@@ -18,14 +18,6 @@ export default {
       }
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true
-      }
-    },
-    {
       name: 'twitterHandle',
       title: 'Twitter Handle',
       type: 'string'
@@ -33,8 +25,16 @@ export default {
     {
       name: 'bio',
       title: 'Bio',
-      type: 'markdown'
+      type: 'blockContent'
     },
+    {
+      name: 'avatar',
+      title: 'Avatar',
+      type: 'image',
+      options: {
+        hotspot: true
+      }
+    }
   ],
   preview: {
     select: {

@@ -61,7 +61,7 @@ export default {
     {
       name: 'body',
       title: 'Body',
-      type: 'markdown',
+      type: 'blockContent',
       group: 'content'
     },
     {
