@@ -8,5 +8,6 @@ export const dateOptions = {
   day: "numeric"
 }
 
-export const kebabCase = (word: string): string =>
-  word.toLowerCase().split(" ").join("-").replace(/[^a-z0-9\-]/g, "")
+export const kebabCase = (word: string): string => {
+  return word.toLowerCase().split(" ").join("-").replace(/[^a-z0-9\-]/g, "")
+}

@@ -1,6 +1,6 @@
 ---
 import groq from "groq"
-import sanityClient from "../sanityClient"
+import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import { kebabCase } from "../lib/utils"
 
@@ -18,7 +18,7 @@ const title = "All Tags"
     <br>
     <ul>
       {tags.map(tag =>
-        <li><a href="/tag/${kebabCase(tag)}">{tag}</a></li>
+        <li><a href={`/tag/${kebabCase(tag)}`}>{tag}</a></li>
       )}
     </ul>
   </div>

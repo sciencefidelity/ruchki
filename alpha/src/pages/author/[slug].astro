@@ -1,7 +1,7 @@
 ---
 import { Markdown } from "astro/components"
 import groq from "groq"
-import sanityClient from "../../sanityClient"
+import sanityClient from "../../lib/sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import { dateOptions } from "../../lib/utils"
 
@@ -17,13 +17,13 @@ export async function getStaticPaths( ) {
   const data = await sanityClient.fetch(query).then(response => response)
   return data.map(author => {
     return {
-      params: { id: author.slug },
+      params: { slug: author.slug },
       props: { author }
     }
   })
 }
 
-const { id } = Astro.request.params
+const { slug } = Astro.request.params
 const { author } = Astro.props
 const title = `Author: ${author.name}`
 ---

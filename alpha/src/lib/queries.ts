@@ -1,30 +1,144 @@
 import groq from "groq"
 
-const siteFields = `
+const omitDrafts = "!(_id in path('drafts.**'))"
+
+const body = `body{
+  ...,
+  markDefs[]{
+    ...,
+    item->{
+      _type,
+      "slug": slug
+    }
+  }
+}`
+
+const seo = `
+  keywords,
   seoDescription,
   seoImage,
-  "keywords": seoKeywords,
-  seoTitle,
+  seoTitle
+`
+
+const siteFields = `
+  ${seo},
   siteDescription,
   siteName,
   twitterHandle
 `
 
-export const indexQuery = groq`{
-  "home": *[_type == "home"][0]{
-    body,
+export const authorQuery = groq`{
+  "authors": *[_type == "author"]{
+    ${body},
+    name,
+    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]
+    | order(publishedAt desc){
+      publishedAt, title, slug
+    },
+    "slug": slug.current
+  }[count(posts) > 0]
+}`
+
+export const authorsQuery = groq`{
+  "authors": *[_type == "author" && ${omitDrafts}]{
+    name,
+    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{},
+    "slug": slug.current
+  }[count(posts) > 0]
+}`
+
+export const blogQuery = groq`{
+  "posts": *[_type == "post"] | order(publishedAt desc){
+    publishedAt,
+    "slug": slug.current,
     title
   }
 }`
 
+export const categoriesQuery = groq`{
+  "categories": *[_type == "category" && ${omitDrafts}]
+| order(title){
+  "slug": slug.current,
+  title,
+  "posts": *[_type == "post" && references(^._id)]
+}[count(posts) > 0]`
+
+export const categoryQuery = groq`{
+  "categories": *[_type == "category" && ${omitDrafts}] | order(title){
+    _id,
+    "posts": *[_type == "post" && references(^._id) && ${omitDrafts}]
+    | order(publishedAt desc){
+      publishedAt, title, slug
+    },
+    "slug": slug.current,
+    title
+  }[count(posts) > 0]
+}`
+
+export const featuredPostsQuery = groq`{
+  "featuredPosts": *[_type == "home" && ${omitDrafts}][0]{
+    featured[0..2]->{
+      publishedAt,
+      "slug": slug.current,
+      title
+    }
+  }
+}`
+
+export const latestPostsQuery = groq`{
+  "posts": *[_type == "post"] | order(publishedAt desc)[0..2]{
+    publishedAt,
+    "slug": slug.current,
+    title
+  }
+}`
+
+export const postQuery = groq`{
+  "posts": *[_type == "post" && ${omitDrafts}]{
+    author->,
+    ${body},
+    "categories": categories[]->,
+    publishedAt,
+    ${seo},
+    "slug": slug.current,
+    title
+  }
+}`
+
+export const indexQuery = groq`{
+  "home": *[_type == "home" && ${omitDrafts}][0]{
+    ${body},
+    title
+  }
+}`
+
+// export const pageQuery = groq`{
+//   "site": *[_type == "site"][0]{
+//     ${siteFields}
+//   }
+// }`
+
+export const navQuery = groq`{
+  "menu": *[_type == "menu"][0]{
+    "item": items[]->{
+      "slug": slug.current,
+      title
+    }
+  }
+}`
+
 export const pageQuery = groq`{
-  "site": *[_type == "site"][0]{
-    seoDescription,
-    seoImage,
-    "keywords": seoKeywords,
-    seoTitle,
-    siteDescription,
-    siteName,
-    twitterHandle
+  "pages": *[_type == "page" && ${omitDrafts}]{
+    ${body},
+    ${seo},
+    "slug": slug.current,
+    template[0],
+    title
+  }
+}`
+
+export const tagsQuery = groq`
+  "tags": *[_type == "post" && ${omitDrafts}]{
+    keywords
   }
 }`
