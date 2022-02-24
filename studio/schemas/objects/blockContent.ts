@@ -33,10 +33,9 @@ export default {
                 type: 'reference',
                 to: [
                   { type: 'author' },
+                  { type: 'category' },
                   { type: 'page' },
-                  { type: 'post' },
-                  { type: 'section' },
-                  { type: 'video' }
+                  { type: 'post' }
                 ]
               }
             ],
