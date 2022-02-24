@@ -14,8 +14,8 @@ import type {
   SanityImageMetadata,
   SanityImageDimensions,
   SanityImagePalette,
-  SanityImagePaletteSwatch,
-} from "sanity-codegen";
+  SanityImagePaletteSwatch
+} from 'sanity-codegen'
 
 export type {
   SanityReference,
@@ -33,8 +33,8 @@ export type {
   SanityImageMetadata,
   SanityImageDimensions,
   SanityImagePalette,
-  SanityImagePaletteSwatch,
-};
+  SanityImagePaletteSwatch
+}
 
 /**
  * Post
@@ -42,28 +42,28 @@ export type {
  *
  */
 export interface Post extends SanityDocument {
-  _type: "post";
+  _type: 'post'
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string;
+  title?: string
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: "slug"; current: string };
+  slug?: { _type: 'slug'; current: string }
 
   /**
    * Author — `reference`
    *
    *
    */
-  author?: SanityReference<Author>;
+  author?: SanityReference<Author>
 
   /**
    * Main image — `image`
@@ -71,53 +71,53 @@ export interface Post extends SanityDocument {
    *
    */
   mainImage?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 
   /**
    * Categories — `array`
    *
    *
    */
-  categories?: Array<SanityKeyedReference<Category>>;
+  categories?: Array<SanityKeyedReference<Category>>
 
   /**
    * Published at — `datetime`
    *
    *
    */
-  publishedAt?: string;
+  publishedAt?: string
 
   /**
    * Body — `markdown`
    *
    *
    */
-  body?: Markdown;
+  body?: Markdown
 
   /**
    * SEO title — `string`
    *
    * Displayed on Facebook and Twitter shares (max 60 characters).
    */
-  seoTitle?: string;
+  seoTitle?: string
 
   /**
    * SEO description — `string`
    *
    * Displayed on Facebook and Twitter shares (max 65 characters).
    */
-  seoDescription?: string;
+  seoDescription?: string
 
   /**
    * Keywords — `string`
    *
    * A list of keywords seperated by commas.
    */
-  seoKeywords?: string;
+  seoKeywords?: string
 
   /**
    * Image — `image`
@@ -125,11 +125,11 @@ export interface Post extends SanityDocument {
    * Ideal size 1200 x 630px (if not added main image will be used).
    */
   seoImage?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 }
 
 /**
@@ -138,28 +138,28 @@ export interface Post extends SanityDocument {
  *
  */
 export interface Page extends SanityDocument {
-  _type: "page";
+  _type: 'page'
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string;
+  title?: string
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: "slug"; current: string };
+  slug?: { _type: 'slug'; current: string }
 
   /**
    * Template — `array`
    *
    *
    */
-  template?: Array<SanityKeyed<string>>;
+  template?: Array<SanityKeyed<string>>
 
   /**
    * Main image — `image`
@@ -167,39 +167,39 @@ export interface Page extends SanityDocument {
    *
    */
   mainImage?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 
   /**
    * Body — `markdown`
    *
    *
    */
-  body?: Markdown;
+  body?: Markdown
 
   /**
    * SEO title — `string`
    *
    * Displayed on Facebook and Twitter shares (max 60 characters).
    */
-  seoTitle?: string;
+  seoTitle?: string
 
   /**
    * SEO description — `string`
    *
    * Displayed on Facebook and Twitter shares (max 65 characters).
    */
-  seoDescription?: string;
+  seoDescription?: string
 
   /**
    * Keywords — `string`
    *
    * A list of keywords seperated by commas.
    */
-  seoKeywords?: string;
+  seoKeywords?: string
 
   /**
    * SEO Image — `image`
@@ -207,11 +207,11 @@ export interface Page extends SanityDocument {
    * Ideal size 1200 x 630px (if not added main image will be used).
    */
   seoImage?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 }
 
 /**
@@ -220,14 +220,14 @@ export interface Page extends SanityDocument {
  *
  */
 export interface Home extends SanityDocument {
-  _type: "home";
+  _type: 'home'
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string;
+  title?: string
 
   /**
    * Main image — `image`
@@ -235,25 +235,25 @@ export interface Home extends SanityDocument {
    *
    */
   mainImage?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 
   /**
    * Body — `markdown`
    *
    *
    */
-  body?: Markdown;
+  body?: Markdown
 
   /**
    * Featured Posts — `array`
    *
    * Maximum three items
    */
-  featured?: Array<SanityKeyedReference<Post>>;
+  featured?: Array<SanityKeyedReference<Post>>
 }
 
 /**
@@ -262,21 +262,21 @@ export interface Home extends SanityDocument {
  *
  */
 export interface Site extends SanityDocument {
-  _type: "site";
+  _type: 'site'
 
   /**
    * Site Name — `string`
    *
    *
    */
-  siteName?: string;
+  siteName?: string
 
   /**
    * Site Description — `string`
    *
    *
    */
-  siteDescription?: string;
+  siteDescription?: string
 
   /**
    * Main image — `image`
@@ -284,60 +284,60 @@ export interface Site extends SanityDocument {
    *
    */
   mainImage?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 
   /**
    * Facebook Link — `string`
    *
    *
    */
-  facebookLink?: string;
+  facebookLink?: string
 
   /**
    * Twitter Link — `string`
    *
    *
    */
-  twitterLink?: string;
+  twitterLink?: string
 
   /**
    * Twitter Handle — `string`
    *
    *
    */
-  twitterHandle?: string;
+  twitterHandle?: string
 
   /**
    * Instagram Link — `string`
    *
    *
    */
-  instagramLink?: string;
+  instagramLink?: string
 
   /**
    * SEO title — `string`
    *
    * Displayed on Facebook and Twitter shares (max 60 characters).
    */
-  seoTitle?: string;
+  seoTitle?: string
 
   /**
    * SEO description — `string`
    *
    * Displayed on Facebook and Twitter shares (max 65 characters).
    */
-  seoDescription?: string;
+  seoDescription?: string
 
   /**
    * Keywords — `string`
    *
    * A list of keywords seperated by commas.
    */
-  seoKeywords?: string;
+  seoKeywords?: string
 
   /**
    * SEO Image — `image`
@@ -345,11 +345,11 @@ export interface Site extends SanityDocument {
    * Ideal size 1200 x 630px (if not added main image will be used).
    */
   seoImage?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 }
 
 /**
@@ -358,21 +358,21 @@ export interface Site extends SanityDocument {
  *
  */
 export interface Menu extends SanityDocument {
-  _type: "menu";
+  _type: 'menu'
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string;
+  title?: string
 
   /**
    * Manu Items — `array`
    *
    *
    */
-  items?: Array<SanityKeyedReference<Page>>;
+  items?: Array<SanityKeyedReference<Page>>
 }
 
 /**
@@ -381,28 +381,28 @@ export interface Menu extends SanityDocument {
  *
  */
 export interface Category extends SanityDocument {
-  _type: "category";
+  _type: 'category'
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string;
+  title?: string
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: "slug"; current: string };
+  slug?: { _type: 'slug'; current: string }
 
   /**
    * Description — `text`
    *
    *
    */
-  description?: string;
+  description?: string
 }
 
 /**
@@ -411,21 +411,21 @@ export interface Category extends SanityDocument {
  *
  */
 export interface Author extends SanityDocument {
-  _type: "author";
+  _type: 'author'
 
   /**
    * Name — `string`
    *
    *
    */
-  name?: string;
+  name?: string
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug?: { _type: "slug"; current: string };
+  slug?: { _type: 'slug'; current: string }
 
   /**
    * Image — `image`
@@ -433,42 +433,42 @@ export interface Author extends SanityDocument {
    *
    */
   image?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+    _type: 'image'
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+  }
 
   /**
    * Twitter Handle — `string`
    *
    *
    */
-  twitterHandle?: string;
+  twitterHandle?: string
 
   /**
    * Bio — `markdown`
    *
    *
    */
-  bio?: Markdown;
+  bio?: Markdown
 }
 
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
-      _type: "image";
-      asset: SanityReference<SanityImageAsset>;
-      crop?: SanityImageCrop;
-      hotspot?: SanityImageHotspot;
+      _type: 'image'
+      asset: SanityReference<SanityImageAsset>
+      crop?: SanityImageCrop
+      hotspot?: SanityImageHotspot
     }>
->;
+>
 
-export type Documents = Post | Page | Home | Site | Menu | Category | Author;
+export type Documents = Post | Page | Home | Site | Menu | Category | Author
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but
  * the definition was not actually found. Future versions of
  * sanity-codegen will let you type this explicity.
  */
-type Markdown = any;
+type Markdown = any

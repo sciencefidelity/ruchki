@@ -14,7 +14,7 @@ export default {
       type: 'image',
       options: {
         hotspot: true
-      },
+      }
     },
     {
       name: 'body',
@@ -25,7 +25,7 @@ export default {
       name: 'featured',
       title: 'Featured Posts',
       type: 'array',
-      of: [{ type: 'reference', to: {type: 'post' }}],
+      of: [{ type: 'reference', to: { type: 'post' } }],
       sortable: true,
       description: 'Maximum three items',
       validation: (Rule: any) => Rule.max(3)

@@ -2,7 +2,7 @@ export default {
   name: 'site',
   title: 'Site',
   type: 'document',
-  __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
+  __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
   groups: [
     {
       name: 'content',
@@ -63,16 +63,20 @@ export default {
       name: 'seoTitle',
       title: 'SEO title',
       type: 'string',
-      description: 'Displayed on Facebook and Twitter shares (max 60 characters).',
-      validation: (Rule: any) => Rule.max(60).warning('Only 60 characters will be visible.'),
+      description:
+        'Displayed on Facebook and Twitter shares (max 60 characters).',
+      validation: (Rule: any) =>
+        Rule.max(60).warning('Only 60 characters will be visible.'),
       group: 'seo'
     },
     {
       name: 'seoDescription',
       title: 'SEO description',
       type: 'string',
-      description: 'Displayed on Facebook and Twitter shares (max 65 characters).',
-      validation: (Rule: any) => Rule.max(65).warning('Only 65 characters will be visible.'),
+      description:
+        'Displayed on Facebook and Twitter shares (max 65 characters).',
+      validation: (Rule: any) =>
+        Rule.max(65).warning('Only 65 characters will be visible.'),
       group: 'seo'
     },
     {
@@ -86,7 +90,8 @@ export default {
       name: 'seoImage',
       title: 'SEO Image',
       type: 'image',
-      description: 'Ideal size 1200 x 630px (if not added main image will be used).',
+      description:
+        'Ideal size 1200 x 630px (if not added main image will be used).',
       group: 'seo'
     }
   ],

@@ -1,4 +1,4 @@
-import { Rule } from "@sanity/types"
+import { Rule } from '@sanity/types'
 
 interface Selection {
   title?: string
@@ -20,9 +20,9 @@ export default {
       title: 'Email',
       type: 'string',
       validation: (Rule: Rule) =>
-      Rule.regex(
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      ).error('Not a valid email address')
+        Rule.regex(
+          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        ).error('Not a valid email address')
     },
     {
       name: 'message',
@@ -32,7 +32,7 @@ export default {
     {
       name: 'approved',
       title: 'Approve Comment',
-      description: 'Comments won\'t appear on the site until this is checked',
+      description: "Comments won't appear on the site until this is checked",
       type: 'boolean'
     },
     {
