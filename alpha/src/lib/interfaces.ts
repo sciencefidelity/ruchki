@@ -20,6 +20,17 @@ export interface Category {
   posts: Post[]
 }
 
+export interface Head {
+  keywords: string
+  permalink: string
+  seoTitle: string
+  seoDescription: string
+  seoImage: Image
+  title: string
+  twitter: string
+  twitterHandle: string
+}
+
 export interface Home {
   body: BlockContent
   featuredPosts: Post[]
@@ -31,6 +42,17 @@ export interface Image {
   asset: SanityReference<SanityImageAsset>
   crop?: SanityImageCrop
   hotspot?: SanityImageHotspot
+}
+
+export interface Layout {
+  title: string
+  keywords: string
+  slug: string
+  seoTitle: string
+  seoDescription: string
+  seoImage: Image
+  twitterHandle: string
+  url: string
 }
 
 export interface Menu {
@@ -46,6 +68,7 @@ export interface Site extends SEO {
   siteDescription: string
   siteName: string
   twitterHandle: string
+  url: string
 }
 
 export interface SEO {

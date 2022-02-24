@@ -1,23 +1,19 @@
 ---
-import groq from "groq"
+import format from "date-fns/format"
 import sanityClient from "../lib/sanityClient"
-import { dateOptions } from "../lib/utils"
+import { latestPostsQuery } from "../lib/queries"
+import { Post } from "../lib/interfaces"
 
-const query = groq`*[_type == "post"] | order(publishedAt desc)[0..2]{
-  publishedAt,
-  "slug": slug.current,
-  title
-}`
-const response = await sanityClient.fetch(query)
-const data = await response
+const response = await sanityClient.fetch(latestPostsQuery)
+const data: { posts: Post[] } = await response
+const { posts } = data
 ---
 <section>
 <h2>Latest Posts</h2>
-  <br>
   <ul>
-    {data.map(item =>
-      <li><a href="/blog/${item.slug}">{item.title}</a><br>
-        {new Date(item.publishedAt).toLocaleDateString("en-GB", dateOptions)}
+    {posts.map(post =>
+      <li><a href="/blog/${item.slug}">{post.title}</a><br>
+        {format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}
       </li>
     )}
   </ul>

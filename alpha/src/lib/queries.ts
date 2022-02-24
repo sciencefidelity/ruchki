@@ -24,7 +24,8 @@ const siteFields = `
   ${seo},
   siteDescription,
   siteName,
-  twitterHandle
+  twitterHandle,
+  url
 `
 
 export const authorQuery = groq`{
@@ -93,6 +94,12 @@ export const latestPostsQuery = groq`{
   }
 }`
 
+export const layoutQuery = groq`{
+  "site": *[_type == "site"][0]{
+    ${siteFields}
+  }
+}`
+
 export const postQuery = groq`{
   "posts": *[_type == "post" && ${omitDrafts}]{
     author->,
@@ -112,12 +119,6 @@ export const indexQuery = groq`{
   }
 }`
 
-// export const pageQuery = groq`{
-//   "site": *[_type == "site"][0]{
-//     ${siteFields}
-//   }
-// }`
-
 export const navQuery = groq`{
   "menu": *[_type == "menu"][0]{
     "item": items[]->{
@@ -127,7 +128,7 @@ export const navQuery = groq`{
   }
 }`
 
-export const pageQuery = groq`{
+export const pagesQuery = groq`{
   "pages": *[_type == "page" && ${omitDrafts}]{
     ${body},
     ${seo},

@@ -1,22 +1,17 @@
 ---
-import groq from "groq"
 import sanityClient from "../lib/sanityClient"
+import BaseHead from "../components/BaseHaad.astro"
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
 import Navbar from "../components/Navbar.astro"
+import { layoutQuery } from "../lib/queries"
+import { Site } from "../lib/interfaces"
+import { Layout } from "../lib/interfaces"
 import "../styles/global.scss"
 
-const query = groq`*[_type == "site"][0]{
-  seoDescription,
-  seoImage,
-  "keywords": seoKeywords,
-  seoTitle,
-  siteDescription,
-  siteName,
-  twitterHandle
-}`
-const response = await sanityClient.fetch(query)
-const data = await response
+const response = await sanityClient.fetch(layoutQuery)
+const data: { site: Site } = await response
+const { site } = data
 const {
   title,
   keywords,
@@ -24,58 +19,46 @@ const {
   seoTitle,
   seoDescription,
   seoImage,
-  twitter,
-  twitterHandle
-} = Astro.props
-const seoTitleJoined = seoTitle ? `${seoTitle} ${seoDescription}` : data.siteDescription
-const socialTitleJoined = seoTitle ? seoTitle : `${title} | ${data.seoTitle}`
+  twitterHandle,
+  url
+} = Astro.props as Layout
+const socialTitleJoined = seoTitle
+  ? seoTitle
+  : `${title} | ${site.seoTitle}`
 ---
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>{title} | {data.siteName}</title>
-    <meta name="description" content={seoTitleJoined}>
-    <meta name="keywords" content={keywords || data.keywords}>
-
-    <meta property="og:title" content={socialTitleJoined}>
-    <meta property="og:description" content={seoDescription || data.seoDescription}>
-    <meta property="og:url" content="https://in-our-hands.com/${slug || ''}">
-    <meta property="og:image" content={seoImage || data.seoImage}>
-    <meta property="og:site_name" content={data.siteName}>
-    <meta property="og:locale" content="en_GB">
-    <meta property="og:type" content="article">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content={socialTitleJoined}>
-    <meta name="twitter:description" content={seoDescription || data.seoDescription}>
-    <meta name="twitter:site" content={data.twitterHandle}>
-    <meta name="twitter:image" content={seoImage || data.seoImage}>
-    {twitterHandle !== undefined && <meta name="twitter:creator" content={twitterHandle}>}
-
-    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
-    <link rel="mask-icon" href="/mask-icon.svg" color="#FFDC5D" />
-    <link rel="stylesheet" href={Astro.resolve("../styles/global.scss")}>
-
+    <BaseHead
+      keywords={keywords || site.keywords}
+      permalink={`${url}/${slug || ''}`}
+      seoDescription={seoDescription || site.seoDescription}
+      seoImage={seoImage || site.seoImage}
+      siteName={title}
+      socialDescription={seoTitle
+        ? `${seoTitle} ${seoDescription}`
+        : site.siteDescription}
+      socialTitle={seoTitle
+        ? seoTitle
+        : `${title} | ${site.seoTitle}`}
+      title={`${title} | ${site.siteName}`}
+      twitter={site.twitterHandle}
+      twitterHandle={twitterHandle}
+    />
   </head>
   <body>
     <div id="app">
       <div>
-        <Header siteName={data.siteName} />
-        <br>
+        <Header siteName={site.siteName} />
         <Navbar />
-        <br>
       </div>
       <main>
         <slot />
       </main>
-      <br>
-      <Footer siteName={data.siteName} />
+      <Footer siteName={site.siteName} />
     </div>
   </body>
 </html>
 
-<!-- prettier-ignore -->
 <style>
 
 </style>

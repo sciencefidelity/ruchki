@@ -1,58 +1,54 @@
 ---
 import { Markdown } from "astro/components"
-import groq from "groq"
 import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Blog from "../components/Blog.astro"
 import Contact from "../components/Contact.astro"
+import { pagesQuery } from "../lib/queries"
+import { Page } from "../lib/interfaces"
 
 export async function getStaticPaths() {
-  const query = groq`*[_type == "page"]{
-    body,
-    "slug": slug.current,
-    seoDescription,
-    seoImage,
-    seoKeywords,
-    seoTitle,
-    template[0],
-    title,
-  }`
-  const data = await sanityClient.fetch(query).then(response => response)
-  return data.map(page => {
+  const data: { pages: Page[] } = await sanityClient.fetch(pagesQuery).then(response => response)
+  return data.pages.map(page => {
     return {
       params: { slug: page.slug },
       props: { page }
     }
   })
 }
-
 const { slug } = Astro.request.params
-const { page } = Astro.props
+const { page } = Astro.props as { page: Page }
+const {
+  body,
+  keywords,
+  seoDescription,
+  seoImage,
+  seoTitle,
+  template,
+  title
+} = page
 ---
 <BaseLayout
   title={page.title}
-  seoDescription={page.seoDescription}
-  keywords={page.seoKeywords}
-  seoTitle={page.seoTitle}
-  siteDescription={page.seoDescription}
-  slug={page.slug}
+  keywords={keywords}
+  seoDescription={seoDescription}
+  seoImage={seoImage}
+  seoTitle={seoTitle}
+  siteDescription={seoDescription}
+  slug={slug}
 >
   <div>
-    <h1>{page.title}</h1>
+    <h1>{title}</h1>
     <br>
-    {page.template === "article" &&
+    {template === "article" &&
       <Markdown>
-        {page.body.replaceAll("https://in-our-hands.com", "")}
+        {body.replaceAll("https://in-our-hands.com", "")}
       </Markdown>
     }
-    {page.template === "blog" && <Blog />}
-    {page.template === "contact" && <Contact />}
+    {template === "blog" && <Blog />}
+    {template === "contact" && <Contact />}
   </div>
 </BaseLayout>
 
-<!-- prettier-ignore -->
 <style>
-h1 {
-  color: hsl(188, 95%, 29%);
-}
 </style>
