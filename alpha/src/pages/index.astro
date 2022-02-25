@@ -1,9 +1,10 @@
 ---
-import { Markdown } from "astro/components"
 import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Featured from "../components/Featured.astro"
 import Latest from "../components/Latest.astro"
+import PortableText from "../components/PortableText"
+import { components } from "../components/PortableTextComponents"
 import { indexQuery } from "../lib/queries"
 import { Home } from "../lib/interfaces"
 
@@ -17,7 +18,7 @@ const title = "Home"
 >
   <section>
     <h1>{home.title}</h1>
-    <Markdown>{home.body}</Markdown>
+    {home.body && <PortableText value={home.body} components={components} />}
   </section>
   <br>
   <Featured />

@@ -1,8 +1,9 @@
 ---
-import { Markdown } from "astro/components"
 import format from "date-fns/format"
 import sanityClient from "../../lib/sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
+import PortableText from "../../components/PortableText"
+import { components } from "../../components/PortableTextComponents"
 import { authorsQuery } from "../../lib/queries"
 import { Author } from "../../lib/interfaces"
 
@@ -25,7 +26,9 @@ const title = `Author: ${author.name}`
   <div>
     <h1>{title}</h1>
     <h2>Bio</h2>
-    <Markdown>{author.body}</Markdown>
+    {author.body &&
+      <PortableText value={author.body} components={components} />
+    }
     <h2>Posts</h2>
     <ul>
       {author.posts.map(post =>
@@ -38,7 +41,6 @@ const title = `Author: ${author.name}`
   </div>
 </BaseLayout>
 
-<!-- prettier-ignore -->
 <style>
 
 </style>
