@@ -1,3 +1,7 @@
+export const buildUrl = (type: string, slug: string): string => {
+  return `${subdir(type)}/${slug}`
+}
+
 export const capitalize = (str: string): string => {
   return str
     .split(/[\s-]/g)
@@ -7,4 +11,17 @@ export const capitalize = (str: string): string => {
 
 export const kebabCase = (str: string): string => {
   return str.toLowerCase().split(" ").join("-").replace(/[^a-z0-9-]/g, "")
+}
+
+export const subdir = (type: string): string => {
+  switch (type) {
+  case "author":
+    return "/authors"
+  case "category":
+    return "/categories"
+  case "post":
+    return "/blog"
+  default:
+    return ""
+  }
 }

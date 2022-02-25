@@ -4,6 +4,8 @@ import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Blog from "../components/Blog.astro"
 import Contact from "../components/Contact.astro"
+import PortableText from "../components/PortableText"
+import { components } from "../components/PortableTextComponents"
 import { pagesQuery } from "../lib/queries"
 import { Page } from "../lib/interfaces"
 
@@ -41,7 +43,7 @@ const {
     <h1>{title}</h1>
     <br>
     {template === "article" &&
-      <Markdown>{body}</Markdown>
+      (body && <PortableText value={body} components={components} />)
     }
     {template === "blog" && <Blog />}
     {template === "contact" && <Contact />}

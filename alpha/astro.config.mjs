@@ -4,7 +4,7 @@ export default {
   projectRoot: '.',
   // https://docs.astro.build/en/reference/configuration-reference/
   buildOptions: {
-    site: "https://in-our-hands.com",
+    // site: "https://in-our-hands.com",
     sitemap: true
   },
   devOptions: {
