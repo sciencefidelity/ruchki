@@ -26,6 +26,8 @@ const {
   body,
   categories,
   keywords,
+  next,
+  previous,
   publishedAt,
   seoDescription,
   seoImage,
@@ -61,10 +63,11 @@ const tags = keywords.split(", ")
       )}
     </ul>
     <Markdown>{body}</Markdown>
+    {previous ? <p><a href={`/blog/${previous.slug}`}>Previous post</a></p> : <p>&nbsp;</p>}
+    {next ? <p><a href={`/blog/${next.slug}`}>Next post</a></p> : <p>&nbsp;</p>}
   </div>
 </BaseLayout>
 
-<!-- prettier-ignore -->
 <style lang="scss">
 li {
   display: inline;

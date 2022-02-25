@@ -90,6 +90,8 @@ export interface Post extends SEO {
   author: Author
   body: BlockContent
   categories: Category[]
+  next: Post
+  previous: Post
   publishedAt: string
   slug: string
   title: string

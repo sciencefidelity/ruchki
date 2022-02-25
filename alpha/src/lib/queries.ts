@@ -93,6 +93,18 @@ export const postQuery = groq`{
     "categories": categories[]->{
       _id, "slug": slug.current, title
     },
+    "next": *[_type == 'post' && publishedAt > ^.publishedAt]
+    | order(publishedAt asc)[0]{
+      publishedAt,
+      "slug": slug.current,
+      title
+    },
+    "previous": *[_type == 'post' && publishedAt < ^.publishedAt]
+    | order(publishedAt desc)[0]{
+      publishedAt,
+      "slug": slug.current,
+      title
+    },
     publishedAt,
     ${seo},
     "slug": slug.current,
