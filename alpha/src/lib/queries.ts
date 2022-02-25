@@ -28,22 +28,13 @@ const siteFields = `
   url
 `
 
-export const authorQuery = groq`{
-  "authors": *[_type == "author"]{
-    ${body},
-    name,
-    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]
-    | order(publishedAt desc){
-      publishedAt, title, slug
-    },
-    "slug": slug.current
-  }[count(posts) > 0]
-}`
-
 export const authorsQuery = groq`{
   "authors": *[_type == "author" && ${omitDrafts}]{
+    ${body},
     name,
-    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{},
+    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{
+      publishedAt, "slug": slug.current, title
+    },
     "slug": slug.current
   }[count(posts) > 0]
 }`
@@ -57,22 +48,10 @@ export const blogQuery = groq`{
 }`
 
 export const categoriesQuery = groq`{
-  "categories": *[_type == "category" && ${omitDrafts}]
-  | order(title){
-    "posts": *[_type == "post" && references(^._id)]{
-      _id, publishedAt, "slug": slug.current, title
-    }
-    "slug": slug.current,
-    title,
-  }[count(posts) > 0]
-}`
-
-export const categoryQuery = groq`{
   "categories": *[_type == "category" && ${omitDrafts}] | order(title){
     _id,
-    "posts": *[_type == "post" && references(^._id) && ${omitDrafts}]
-    | order(publishedAt desc){
-      publishedAt, title, slug
+    "posts": *[_type == "post" && references(^._id) && ${omitDrafts}] | order(publishedAt desc){
+      _id, publishedAt, "slug": slug.current, title
     },
     "slug": slug.current,
     title
@@ -80,7 +59,7 @@ export const categoryQuery = groq`{
 }`
 
 export const featuredPostsQuery = groq`{
-  "featuredPosts": *[_type == "home" && ${omitDrafts}][0]{
+  "posts": *[_type == "home" && ${omitDrafts}][0]{
     featured[0..2]->{
       publishedAt,
       "slug": slug.current,
@@ -107,11 +86,13 @@ export const postQuery = groq`{
   "posts": *[_type == "post" && ${omitDrafts}]{
     author->{
       name,
-      "slug": slug.current
-      twitterHandle,
+      "slug": slug.current,
+      twitterHandle
     },
     ${body},
-    "categories": categories[]->,
+    "categories": categories[]->{
+      _id, "slug": slug.current, title
+    },
     publishedAt,
     ${seo},
     "slug": slug.current,

@@ -2,20 +2,21 @@
 import format from "date-fns/format"
 import sanityClient from "../../lib/sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import { categoryQuery } from "../../lib/queries"
+import { categoriesQuery } from "../../lib/queries"
 import { Category } from "../../lib/interfaces"
 
-
 export async function getStaticPaths() {
-  const data: { categories: Category[] } = await sanityClient.fetch(categoryQuery).then(response => response)
+  const data: { categories: Category[] } = await sanityClient
+    .fetch(categoriesQuery)
+    .then(response => response)
   return data.categories.map(category => {
+    console.log(category.slug)
     return {
       params: { slug: category.slug },
       props: { category }
     }
   })
 }
-
 const { slug } = Astro.request.params
 const { category } = Astro.props as { category: Category }
 const title = `Category: ${category.title}`

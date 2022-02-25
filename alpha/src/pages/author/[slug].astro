@@ -17,7 +17,6 @@ export async function getStaticPaths( ) {
     }
   })
 }
-
 const { slug } = Astro.request.params
 const { author } = Astro.props as { author: Author }
 const title = `Author: ${author.name}`
@@ -25,10 +24,8 @@ const title = `Author: ${author.name}`
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
-    <br>
     <h2>Bio</h2>
     <Markdown>{author.body}</Markdown>
-    <br>
     <h2>Posts</h2>
     <ul>
       {author.posts.map(post =>
@@ -37,7 +34,6 @@ const title = `Author: ${author.name}`
         </li>
       )}
     </ul>
-    <br>
     <p><a href="/authors">All authors</a></p>
   </div>
 </BaseLayout>

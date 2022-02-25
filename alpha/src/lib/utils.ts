@@ -1,13 +1,10 @@
-export const capitalize = (word: string): string =>
-  word[0].toUpperCase() + word.slice(1, word.length)
-
-export const dateOptions = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric"
+export const capitalize = (str: string): string => {
+  return str
+    .split(/[\s-]/g)
+    .map(e => e.replace(e[0], e[0].toUpperCase()))
+    .join(" ")
 }
 
-export const kebabCase = (word: string): string => {
-  return word.toLowerCase().split(" ").join("-").replace(/[^a-z0-9\-]/g, "")
+export const kebabCase = (str: string): string => {
+  return str.toLowerCase().split(" ").join("-").replace(/[^a-z0-9-]/g, "")
 }

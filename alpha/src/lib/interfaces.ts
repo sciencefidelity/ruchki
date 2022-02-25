@@ -16,9 +16,9 @@ export interface Author {
 
 export interface Category {
   _id: string
+  posts: Post[]
   slug: string
   title: string
-  posts: Post[]
 }
 
 export interface Head {
@@ -34,7 +34,7 @@ export interface Head {
 
 export interface Home {
   body: BlockContent
-  featuredPosts: Post[]
+  featured: Post[]
   title: string
 }
 

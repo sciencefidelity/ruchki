@@ -12,7 +12,7 @@ const { posts } = data
 <h2>Latest Posts</h2>
   <ul>
     {posts.map(post =>
-      <li><a href="/blog/${item.slug}">{post.title}</a><br>
+      <li><a href={`/blog/${post.slug}`}>{post.title}</a><br>
         {format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}
       </li>
     )}
