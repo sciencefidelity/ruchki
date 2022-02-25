@@ -14,6 +14,7 @@ export async function getStaticPaths() {
     .flat(1)
     .sort()
   )]
+  console.log(tags)
   return tags.map(tag => {
     return {
       params: { slug: kebabCase(tag) },

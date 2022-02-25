@@ -57,7 +57,7 @@ const tags = keywords.split(", ")
     </ul>
     <ul>
       tags: {tags.map(tag =>
-        <li><a href={`/tag/${kebabCase(tag)}`}>{tag}</a></li>
+        <li><a href={`/tags/${kebabCase(tag)}`}>{tag}</a></li>
       )}
     </ul>
     <Markdown>{body}</Markdown>

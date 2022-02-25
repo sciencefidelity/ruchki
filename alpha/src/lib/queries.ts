@@ -126,7 +126,7 @@ export const pagesQuery = groq`{
   }
 }`
 
-export const tagsQuery = groq`
+export const tagsQuery = groq`{
   "posts": *[_type == "post" && ${omitDrafts}]{
     keywords
   }
