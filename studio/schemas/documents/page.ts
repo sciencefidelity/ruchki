@@ -1,4 +1,3 @@
-/** @type {import("@sanity/types") */
 import { Rule } from '@sanity/types'
 
 export default {
@@ -88,7 +87,7 @@ export default {
       group: 'seo'
     },
     {
-      name: 'seoKeywords',
+      name: 'keywords',
       title: 'Keywords',
       type: 'string',
       description: 'A list of keywords seperated by commas.',

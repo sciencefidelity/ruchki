@@ -23,12 +23,12 @@ export default {
       type: 'string'
     },
     {
-      name: 'bio',
+      name: 'body',
       title: 'Bio',
       type: 'blockContent'
     },
     {
-      name: 'avatar',
+      name: 'image',
       title: 'Avatar',
       type: 'image',
       options: {

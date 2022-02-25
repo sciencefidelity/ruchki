@@ -1,3 +1,5 @@
+import { Rule } from '@sanity/types'
+
 export default {
   name: 'site',
   title: 'Site',
@@ -65,7 +67,7 @@ export default {
       type: 'string',
       description:
         'Displayed on Facebook and Twitter shares (max 60 characters).',
-      validation: (Rule: any) =>
+      validation: (Rule: Rule) =>
         Rule.max(60).warning('Only 60 characters will be visible.'),
       group: 'seo'
     },
@@ -75,12 +77,12 @@ export default {
       type: 'string',
       description:
         'Displayed on Facebook and Twitter shares (max 65 characters).',
-      validation: (Rule: any) =>
+      validation: (Rule: Rule) =>
         Rule.max(65).warning('Only 65 characters will be visible.'),
       group: 'seo'
     },
     {
-      name: 'seoKeywords',
+      name: 'keywords',
       title: 'Keywords',
       type: 'string',
       description: 'A list of keywords seperated by commas.',

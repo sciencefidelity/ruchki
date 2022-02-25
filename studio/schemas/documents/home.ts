@@ -1,3 +1,5 @@
+import { Rule } from '@sanity/types'
+
 export default {
   name: 'home',
   title: 'Home',
@@ -28,7 +30,7 @@ export default {
       of: [{ type: 'reference', to: { type: 'post' } }],
       sortable: true,
       description: 'Maximum three items',
-      validation: (Rule: any) => Rule.max(3)
+      validation: (Rule: Rule) => Rule.max(3)
     }
   ],
   preview: {
