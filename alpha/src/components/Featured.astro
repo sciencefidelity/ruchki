@@ -7,7 +7,6 @@ import { Home } from "../lib/interfaces"
 const response = await sanityClient.fetch(featuredPostsQuery)
 const data: { posts: Home } = await response
 const { featured } = data.posts
-console.log(data)
 ---
 <section>
   <h2>Featured Posts</h2>
