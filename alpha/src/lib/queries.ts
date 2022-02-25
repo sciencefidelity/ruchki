@@ -58,11 +58,14 @@ export const blogQuery = groq`{
 
 export const categoriesQuery = groq`{
   "categories": *[_type == "category" && ${omitDrafts}]
-| order(title){
-  "slug": slug.current,
-  title,
-  "posts": *[_type == "post" && references(^._id)]
-}[count(posts) > 0]`
+  | order(title){
+    "posts": *[_type == "post" && references(^._id)]{
+      _id, publishedAt, "slug": slug.current, title
+    }
+    "slug": slug.current,
+    title,
+  }[count(posts) > 0]
+}`
 
 export const categoryQuery = groq`{
   "categories": *[_type == "category" && ${omitDrafts}] | order(title){
@@ -102,7 +105,11 @@ export const layoutQuery = groq`{
 
 export const postQuery = groq`{
   "posts": *[_type == "post" && ${omitDrafts}]{
-    author->,
+    author->{
+      name,
+      "slug": slug.current
+      twitterHandle,
+    },
     ${body},
     "categories": categories[]->,
     publishedAt,
@@ -139,7 +146,7 @@ export const pagesQuery = groq`{
 }`
 
 export const tagsQuery = groq`
-  "tags": *[_type == "post" && ${omitDrafts}]{
+  "posts": *[_type == "post" && ${omitDrafts}]{
     keywords
   }
 }`

@@ -1,17 +1,11 @@
 ---
-import groq from "groq"
-import sanityClient from "../sanityClient"
+import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
+import { categoriesQuery } from "../lib/queries"
+import { Category } from "../lib/interfaces"
 
-const query = groq`*[_type == "category"] | order(title){
-  "slug": slug.current,
-  title,
-  "posts": *[_type == "post" && references(^._id)]
-}[count(posts) > 0]`
-
-const response = await sanityClient.fetch(query)
-const data = await response
-
+const response = await sanityClient.fetch(categoriesQuery)
+const data: { categories: Category[] } = await response
 const title = "All Categories"
 ---
 <BaseLayout title={title}>
@@ -19,16 +13,15 @@ const title = "All Categories"
     <h1>{title}</h1>
     <br>
     <ul>
-      {data.map(item =>
+      {data.categories.map(category =>
         <li>
-          <a href="/category/${item.slug}">{item.title}</a>
+          <a href={`/category/${category.slug}`}>{category.title}</a>
         </li>
       )}
     </ul>
   </div>
 </BaseLayout>
 
-<!-- prettier-ignore -->
 <style>
 
 </style>

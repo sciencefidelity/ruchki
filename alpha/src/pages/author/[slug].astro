@@ -1,21 +1,16 @@
 ---
 import { Markdown } from "astro/components"
-import groq from "groq"
+import format from "date-fns/format"
 import sanityClient from "../../lib/sanityClient"
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import { dateOptions } from "../../lib/utils"
+import { authorsQuery } from "../../lib/queries"
+import { Author } from "../../lib/interfaces"
 
 export async function getStaticPaths( ) {
-  const query = groq`*[_type == "author"]{
-    bio,
-    name,
-    "posts": *[_type == "post" && author._ref == ^._id] | order(publishedAt desc){
-      publishedAt, title, slug
-    },
-    "slug": slug.current
-  }[count(posts) > 0]`
-  const data = await sanityClient.fetch(query).then(response => response)
-  return data.map(author => {
+  const data: { authors: Author[] } = await sanityClient
+    .fetch(authorsQuery)
+    .then(response => response)
+  return data.authors.map(author => {
     return {
       params: { slug: author.slug },
       props: { author }
@@ -24,7 +19,7 @@ export async function getStaticPaths( ) {
 }
 
 const { slug } = Astro.request.params
-const { author } = Astro.props
+const { author } = Astro.props as { author: Author }
 const title = `Author: ${author.name}`
 ---
 <BaseLayout title={title}>
@@ -32,13 +27,13 @@ const title = `Author: ${author.name}`
     <h1>{title}</h1>
     <br>
     <h2>Bio</h2>
-    <Markdown>{author.bio}</Markdown>
+    <Markdown>{author.body}</Markdown>
     <br>
     <h2>Posts</h2>
     <ul>
-      {author.posts.map(item =>
-        <li><a href="/blog/${item.slug.current}">{item.title}</a><br>
-          {new Date(item.publishedAt).toLocaleDateString("en-GB", dateOptions)}
+      {author.posts.map(post =>
+        <li><a href={`/blog/${post.slug}`}>{post.title}</a><br>
+          {format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}
         </li>
       )}
     </ul>

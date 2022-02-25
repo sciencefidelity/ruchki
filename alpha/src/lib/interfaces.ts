@@ -11,6 +11,7 @@ export interface Author {
   name: string
   posts: Post[]
   slug: string
+  twitterHandle: string
 }
 
 export interface Category {

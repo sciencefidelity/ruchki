@@ -1,17 +1,11 @@
 ---
-import groq from "groq"
-import sanityClient from "../sanityClient"
+import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
+import { authorsQuery } from "../lib/queries"
+import { Author } from "../lib/interfaces"
 
-const query = groq`*[_type == "author"]{
-  name,
-  "posts": *[_type == "post" && author._ref == ^._id]{},
-  "slug": slug.current
-}[count(posts) > 0]`
-
-const response = await sanityClient.fetch(query)
-const data = await response
-
+const response = await sanityClient.fetch(authorsQuery)
+const data: { authors: Author[] } = await response
 const title = "All Authors"
 ---
 <BaseLayout title={title}>
@@ -19,16 +13,15 @@ const title = "All Authors"
     <h1>{title}</h1>
     <br>
     <ul>
-      {data.map(item =>
+      {data.authors.map(author =>
         <li>
-          <a href="/author/${item.slug}">{item.name}</a>
+          <a href={`/author/${author.slug}`}>{author.name}</a>
         </li>
       )}
     </ul>
   </div>
 </BaseLayout>
 
-<!-- prettier-ignore -->
 <style>
 
 </style>

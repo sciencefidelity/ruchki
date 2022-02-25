@@ -9,15 +9,15 @@ import { Home } from "../lib/interfaces"
 
 const response = await sanityClient.fetch(indexQuery)
 const data: { home: Home } = await response
-const { body, title } = data.home
-const pageTitle = "Home"
+const { home } = data
+const title = "Home"
 ---
 <BaseLayout
-  title={pageTitle}
+  title={title}
 >
   <section>
-    <h1>{title}</h1>
-    <Markdown>{body}</Markdown>
+    <h1>{home.title}</h1>
+    <Markdown>{home.body}</Markdown>
   </section>
   <br>
   <Featured />

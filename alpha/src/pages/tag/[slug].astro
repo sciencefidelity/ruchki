@@ -1,25 +1,28 @@
 ---
-import { Markdown } from "astro/components"
-import groq from "groq"
-import sanityClient from "../../tag/sanityClient"
-import BaseLayout from "../../layouts/BaseLayout.astro"
+import sanityClient from "../../lib/sanityClient"
 import { kebabCase } from "../../lib/utils"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import { tagsQuery } from "../../lib/queries"
+import { Post } from "../../lib/interfaces"
 
 export async function getStaticPaths() {
-  const query = groq`*[_type == "post"]{
-    seoKeywords
-  }`
-  const data = await sanityClient.fetch(query).then(response => response)
-  const tags = [...new Set(data.map(e => e.seoKeywords.split(", ")).flat(1).sort())]
+  const data: { posts: Post[] } = await sanityClient
+    .fetch(tagsQuery)
+    .then(response => response)
+  const tags = [...new Set(data.posts
+    .map(e => e.keywords.split(", "))
+    .flat(1)
+    .sort()
+  )]
   return tags.map(tag => {
     return {
-      params: { id: kebabCase(tag) },
+      params: { slug: kebabCase(tag) },
       props: { tag }
     }
   })
 }
-const { id } = Astro.request.params
-const { tag } = Astro.props
+const { slug } = Astro.request.params
+const { tag } = Astro.props as { tag: string }
 const title = `Tag: ${tag}`
 ---
 <BaseLayout title={title}>

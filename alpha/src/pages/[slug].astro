@@ -41,9 +41,7 @@ const {
     <h1>{title}</h1>
     <br>
     {template === "article" &&
-      <Markdown>
-        {body.replaceAll("https://in-our-hands.com", "")}
-      </Markdown>
+      <Markdown>{body}</Markdown>
     }
     {template === "blog" && <Blog />}
     {template === "contact" && <Contact />}

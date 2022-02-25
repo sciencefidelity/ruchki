@@ -1,25 +1,17 @@
 ---
 import { Markdown } from "astro/components"
-import groq from "groq"
+import format from "date-fns/format"
 import sanityClient from "../../lib/sanityClient"
+import { kebabCase } from "../../lib/utils"
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import { dateOptions, kebabCase } from "../../lib/utils"
+import { postQuery } from "../../lib/queries"
+import { Post } from "../../lib/interfaces"
 
 export async function getStaticPaths() {
-  const query = groq`*[_type == "post"]{
-    author->,
-    body,
-    "categories": categories[]->,
-    publishedAt,
-    seoDescription,
-    seoImage,
-    seoKeywords,
-    seoTitle,
-    "slug": slug.current,
-    title
-  }`
-  const data = await sanityClient.fetch(query).then(response => response)
-  return data.map(post => {
+  const data: { posts: Post[] } = await sanityClient
+    .fetch(postQuery)
+    .then(response => response)
+  return data.posts.map(post => {
     return {
       params: { slug: post.slug },
       props: { post }
@@ -28,36 +20,47 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.request.params
-const { post } = Astro.props
-const date = new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions)
-const tags = post.seoKeywords.split(", ")
+const { post } = Astro.props as { post: Post }
+const {
+  author,
+  body,
+  categories,
+  keywords,
+  publishedAt,
+  seoDescription,
+  seoImage,
+  seoTitle,
+  title
+} = post
+const date = format(new Date(publishedAt), "eeee, do MMMM yyyy")
+const tags = keywords.split(", ")
 ---
 <BaseLayout
-  title={post.title}
-  seoDescription={post.seoDescription}
-  keywords={post.seoKeywords}
-  seoTitle={post.seoTitle}
-  slug={post.slug}
-  twitterHandle={post.author.twitterHandle}
+  title={title}
+  seoDescription={seoDescription}
+  keywords={keywords}
+  seoImage={seoImage}
+  seoTitle={seoTitle}
+  slug={slug}
+  twitterHandle={author.twitterHandle}
 >
   <div>
-    <h1>{post.title}</h1>
+    <h1>{title}</h1>
     <p>published on: {date}</p>
     <p>by:
-      <a href="/author/${post.author.slug.current}">{post.author.name}</a>
+      <a href={`/author/${author.slug}`}>{post.author.name}</a>
     </p>
     <ul>
-      in: {post.categories.map(item =>
-        <li><a href="/category/${item.slug.current}">{item.title}</a></li>
+      in: {categories.map(category =>
+        <li><a href={`/category/${category.slug}`}>{category.title}</a></li>
       )}
     </ul>
     <ul>
       tags: {tags.map(tag =>
-        <li><a href="/tag/${kebabCase(tag)}">{tag}</a></li>
+        <li><a href={`/tag/${kebabCase(tag)}`}>{tag}</a></li>
       )}
     </ul>
-    <br>
-    <Markdown>{post.body.replaceAll("https://in-our-hands.com", "")}</Markdown>
+    <Markdown>{body}</Markdown>
   </div>
 </BaseLayout>
 
