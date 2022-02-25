@@ -182,7 +182,7 @@ export interface Post extends SanityDocument {
    *
    * A list of keywords seperated by commas.
    */
-  seoKeywords?: string;
+  keywords?: string;
 
   /**
    * Image — `image`
@@ -264,7 +264,7 @@ export interface Page extends SanityDocument {
    *
    * A list of keywords seperated by commas.
    */
-  seoKeywords?: string;
+  keywords?: string;
 
   /**
    * SEO Image — `image`
@@ -360,7 +360,7 @@ export interface Site extends SanityDocument {
    *
    * A list of keywords seperated by commas.
    */
-  seoKeywords?: string;
+  keywords?: string;
 
   /**
    * SEO Image — `image`
@@ -409,14 +409,14 @@ export interface Author extends SanityDocument {
    *
    *
    */
-  bio?: BlockContent;
+  body?: BlockContent;
 
   /**
    * Avatar — `image`
    *
    *
    */
-  avatar?: {
+  image?: {
     _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
