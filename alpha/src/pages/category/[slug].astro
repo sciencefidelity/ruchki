@@ -23,20 +23,17 @@ const title = `Category: ${category.title}`
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
-    <br>
     <ul>
       {category.posts.map(post =>
-        <li><a href={`/blog/${post.slug}`}>{post.title}</a><br>
+        <li><a href={`/blog/${post.slug}`}>{post.title}</a>
           {format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}
         </li>
       )}
     </ul>
-    <br>
     <p><a href="/categories">All categories</a></p>
   </div>
 </BaseLayout>
 
-<!-- prettier-ignore -->
 <style>
 
 </style>

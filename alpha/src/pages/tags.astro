@@ -13,7 +13,6 @@ const title = "All Tags"
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
-    <br>
     <ul>
       {tags.map(tag =>
         <li><a href={`/tags/${kebabCase(tag)}`}>{tag}</a></li>

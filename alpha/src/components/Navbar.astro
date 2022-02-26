@@ -6,14 +6,25 @@ const response = await sanityClient.fetch(navQuery)
 const data: { menu: Menu } = await response
 const { menu } = data
 ---
-<nav class="nav">
-  <ul>
+<nav>
+  <ul class="flex gap-10">
     {menu.item.map(item =>
-      <li><a href="/${item.slug}">{item.title}</a></li>
+      <li><a href={`/${item.slug}`}>{item.title}</a></li>
     )}
   </ul>
 </nav>
 
-<style>
+<!-- <style>
+.flex {
+  display: flex;
+  gap: 2rem;
+}
 
-</style>
+.block {
+  display: block;
+}
+
+li {
+  display: block;
+}
+</style> -->

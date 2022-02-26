@@ -3,7 +3,6 @@ import sanityClient from "../lib/sanityClient"
 import BaseHead from "../components/BaseHaad.astro"
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
-import Navbar from "../components/Navbar.astro"
 import { layoutQuery } from "../lib/queries"
 import { Site } from "../lib/interfaces"
 import { Layout } from "../lib/interfaces"
@@ -22,9 +21,6 @@ const {
   twitterHandle,
   url
 } = Astro.props as Layout
-const socialTitleJoined = seoTitle
-  ? seoTitle
-  : `${title} | ${site.seoTitle}`
 ---
 <html lang="en">
   <head>
@@ -47,11 +43,8 @@ const socialTitleJoined = seoTitle
   </head>
   <body>
     <div id="app">
-      <div>
-        <Header siteName={site.siteName} />
-        <Navbar />
-      </div>
-      <main>
+      <Header siteName={site.siteName} />
+      <main class="container mx-auto">
         <slot />
       </main>
       <Footer siteName={site.siteName} />

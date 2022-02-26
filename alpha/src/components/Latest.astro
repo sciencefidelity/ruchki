@@ -9,12 +9,16 @@ const data: { posts: Post[] } = await response
 const { posts } = data
 ---
 <section>
-<h2>Latest Posts</h2>
-  <ul>
+  <h2>Latest Posts</h2>
+  <div class="grid grid-cols-3 gap-4">
     {posts.map(post =>
-      <li><a href={`/blog/${post.slug}`}>{post.title}</a><br>
-        {format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}
-      </li>
+      <div>
+        <div class="image"></div>
+        <div>
+          <p><a href={`/blog/${post.slug}`}>{post.title}</a></p>
+          <p>{format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}</p>
+        </div>
+      </div>
     )}
-  </ul>
+  </div>
 </section>

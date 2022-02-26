@@ -1,13 +1,17 @@
 ---
+import Navbar from "../components/Navbar.astro"
 const { siteName } = Astro.props
 ---
-<header class="header">
-  <p>
-    <strong><a href="/">{siteName}</a></strong>
-  </p>
+<header class="container mx-auto">
+  <h1>
+    <a href="/">{siteName}</a>
+  </h1>
+  <Navbar />
 </header>
 
-<!-- prettier-ignore -->
-<style>
-
-</style>
+<!-- <style>
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+</style> -->

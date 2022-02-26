@@ -61,6 +61,8 @@ export const categoriesQuery = groq`{
 export const featuredPostsQuery = groq`{
   "posts": *[_type == "home" && ${omitDrafts}][0]{
     featured[0..2]->{
+      body,
+      author->{name},
       publishedAt,
       "slug": slug.current,
       title

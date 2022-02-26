@@ -1,6 +1,7 @@
 ---
 import format from "date-fns/format"
 import sanityClient from "../lib/sanityClient"
+import { toPlainText } from "../lib/utils"
 import { featuredPostsQuery } from "../lib/queries"
 import { Home } from "../lib/interfaces"
 
@@ -10,11 +11,17 @@ const { featured } = data.posts
 ---
 <section>
   <h2>Featured Posts</h2>
-  <ul>
+  <div class="grid grid-cols-3 gap-4">
     {featured.map(post =>
-      <li><a href={`/blog/${post.slug}`}>{post.title}</a><br>
-        {format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}
-      </li>
+      <div>
+        <div class="image"></div>
+        <div>
+          <p><a href={`/blog/${post.slug}`}>{post.title}</a></p>
+          <p>{format(new Date(post.publishedAt), "eeee, do MMMM yyyy")}</p>
+          {toPlainText(post.body).substring(0, 190) + "..."}
+          <a href={`/blog/${post.slug}`}>read&nbsp;more</a>
+        </div>
+      </div>
     )}
-  </ul>
+  </div>
 </section>
