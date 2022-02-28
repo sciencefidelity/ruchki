@@ -2,29 +2,17 @@
 import sanityClient from "../lib/sanityClient"
 import { navQuery } from "../lib/queries"
 import { Menu } from "../lib/interfaces"
+
 const response = await sanityClient.fetch(navQuery)
 const data: { menu: Menu } = await response
+const { siteName } = Astro.props
 const { menu } = data
 ---
-<nav>
-  <ul class="flex gap-10">
+<nav class="text-white">
+  <ul class="flex gap-7">
+    <li><a href={"/"}>{siteName}</a></li>
     {menu.item.map(item =>
       <li><a href={`/${item.slug}`}>{item.title}</a></li>
     )}
   </ul>
 </nav>
-
-<!-- <style>
-.flex {
-  display: flex;
-  gap: 2rem;
-}
-
-.block {
-  display: block;
-}
-
-li {
-  display: block;
-}
-</style> -->

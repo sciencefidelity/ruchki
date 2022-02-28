@@ -15,11 +15,8 @@ const title = "Home"
 ---
 <BaseLayout
   title={title}
+  subtitle={home.title}
 >
-  <section>
-    <h1>{home.title}</h1>
-    {home.body && <PortableText value={home.body} components={components} />}
-  </section>
   <Featured />
   <Latest />
 </BaseLayout>

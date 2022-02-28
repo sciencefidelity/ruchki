@@ -18,6 +18,7 @@ const {
   seoTitle,
   seoDescription,
   seoImage,
+  subtitle,
   twitterHandle,
   url
 } = Astro.props as Layout
@@ -42,10 +43,12 @@ const {
     />
   </head>
   <body>
-    <div id="app" class="outer">
-      <Header siteName={site.siteName} />
-      <main class="inner mx-auto mb-20">
-        <slot />
+    <div id="app">
+      <Header siteName={site.siteName} subtitle={subtitle} />
+      <main class="outer mx-auto mb-20">
+        <div class="inner">
+          <slot />
+        </div>
       </main>
       <Footer siteName={site.siteName} />
     </div>
