@@ -42,9 +42,9 @@ const {
     />
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="outer">
       <Header siteName={site.siteName} />
-      <main class="container mx-auto mb-20">
+      <main class="inner mx-auto mb-20">
         <slot />
       </main>
       <Footer siteName={site.siteName} />

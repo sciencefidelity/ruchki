@@ -11,11 +11,11 @@ const { featured } = data.posts
 ---
 <section>
   <h2 class="text-3xl font-bold mb-7">Featured Posts</h2>
-  <div class="grid grid-cols-3 gap-9">
+  <div class="grid grid-cols-1 gap-v md:grid-cols-2 lg:grid-cols-3">
     {featured.map(post =>
       <div>
         <a href={`/blog/${post.slug}`}>
-          <div class="rounded-sm aspect-video bg-amber-300 mb-7"></div>
+          <div class="rounded-sm h-52 bg-amber-300 mb-7"></div>
         </a>
         <div>
           <ul class="uppercase text-sm text-pink-500">
@@ -33,7 +33,9 @@ const { featured } = data.posts
           <div class="flex gap-3 text-sm">
             <div class="avatar aspect-square rounded-full bg-amber-300"></div>
             <div>
-              <p class="font-medium">{post.author.name}</p>
+              <p class="font-medium">
+                <a href={`/authors/${post.author.slug}`}>{post.author.name}</a>
+              </p>
               <p>{format(new Date(post.publishedAt), "MMM do, yyyy")}</p>
             </div>
           </div>

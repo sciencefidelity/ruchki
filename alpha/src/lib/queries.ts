@@ -61,7 +61,7 @@ export const categoriesQuery = groq`{
 export const featuredPostsQuery = groq`{
   "posts": *[_type == "home" && ${omitDrafts}][0]{
     featured[0..2]->{
-      author->{name},
+      author->{name, "slug": slug.current},
       body,
       categories[]->{
         _id, "slug": slug.current, title
@@ -75,7 +75,7 @@ export const featuredPostsQuery = groq`{
 
 export const latestPostsQuery = groq`{
   "posts": *[_type == "post"] | order(publishedAt desc)[0..2]{
-    author->{name},
+    author->{name, "slug": slug.current},
     body,
     categories[]->{
       _id, "slug": slug.current, title

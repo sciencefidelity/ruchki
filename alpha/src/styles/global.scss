@@ -10,3 +10,18 @@ html {
 .serif {
   font-family: Georgia, Times, serif;
 }
+
+.outer {
+  position: relative;
+  padding: 0 4vmin;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.gap-v {
+  grid-gap: 4vmin;
+}
