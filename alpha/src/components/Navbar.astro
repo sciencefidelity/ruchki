@@ -10,9 +10,20 @@ const { menu } = data
 ---
 <nav class="text-white">
   <ul class="flex gap-7">
-    <li><a href={"/"}>{siteName}</a></li>
+    <li>
+      <a href="/" class="opacity-80 hover:opacity-100 font-medium">
+        {siteName}
+      </a>
+    </li>
     {menu.item.map(item =>
-      <li><a href={`/${item.slug}`}>{item.title}</a></li>
+      <li>
+        <a
+          href={`/${item.slug}`}
+          class="opacity-80 hover:opacity-100 font-medium"
+        >
+          {item.title}
+        </a>
+      </li>
     )}
   </ul>
 </nav>

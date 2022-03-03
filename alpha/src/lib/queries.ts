@@ -74,7 +74,7 @@ export const featuredPostsQuery = groq`{
 }`
 
 export const latestPostsQuery = groq`{
-  "posts": *[_type == "post"] | order(publishedAt desc)[0..2]{
+  "posts": *[_type == "post"] | order(publishedAt desc)[0..7]{
     author->{name, "slug": slug.current},
     body,
     categories[]->{
