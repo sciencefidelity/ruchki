@@ -8,15 +8,26 @@ import { Post } from "../lib/interfaces"
 const response = await sanityClient.fetch(latestPostsQuery)
 const data: { posts: Post[] } = await response
 const { posts } = data
+const bg = [
+  "bg-pink-600",
+  "bg-amber-300",
+  "bg-cyan-500",
+  "bg-sky-600"
+]
 ---
 <section>
   <!-- <h2 class="text-3xl font-bold mb-7">Latest Posts</h2> -->
   <div class="posts-cards grid grid-cols-1 gap-v md:grid-cols-2 lg:grid-cols-3">
-    {posts.map(post =>
+    {posts.map((post, idx) =>
       <article class="posts-card">
         <a href={`/blog/${post.slug}`} class="mb-6">
           <!-- <img /> -->
-          <div class="image rounded-sm h-50 bg-amber-300 mb-6"></div>
+          <div
+            class={`
+              image rounded-sm h-50 mb-6
+              ${idx < 4 ? bg[idx] : bg[idx - 4]}
+            `}
+          ></div>
         </a>
         <a href={`/blog/${post.slug}`}>
           <header>
@@ -28,7 +39,9 @@ const { posts } = data
             <div class="uppercase text-xs font-medium text-pink-500 mb-1.5">
               {post.categories[0].title}
             </div>
-            <h2 class="text-2xl font-bold mb-3 leading-5">{post.title}</h2>
+            <h2 class="post-card-title text-2xl font-bold mb-3 leading-5">
+              {post.title}
+            </h2>
           </header>
           <div>
             <p class="excerpt serif mb-5 text-slate-500">
@@ -45,7 +58,7 @@ const { posts } = data
         <footer class="flex gap-3">
           <a href={`/authors/${post.author.slug}`}>
             <!-- <img /> -->
-            <div class="avatar rounded-full bg-amber-300"></div>
+            <div class="avatar rounded-full bg-stone-500"></div>
           </a>
           <div class="flex flex-col">
             <span class="font-medium text-sm">
