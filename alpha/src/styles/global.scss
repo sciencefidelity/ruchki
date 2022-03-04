@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 // @use "foundation/utils";
 
 html {
@@ -63,15 +63,15 @@ html {
 //   border-top: 0;
 // }
 
-.posts-card:first-child {
-  grid-column: 1/span 3;
-  display: grid;
-  grid-gap: 4vmin;
-  grid-template-columns: 1fr 1fr 1fr;
-  min-height: 280px;
-  border-top: 0;
-  .image {
-    height: 380px;
-    grid-column: 1/span 2;
-  }
-}
+// .posts-card:first-child {
+//   grid-column: 1/span 3;
+//   display: grid;
+//   grid-gap: 4vmin;
+//   grid-template-columns: 1fr 1fr 1fr;
+//   min-height: 280px;
+//   border-top: 0;
+//   .image {
+//     height: 380px;
+//     grid-column: 1/span 2;
+//   }
+// }
