@@ -1,10 +1,9 @@
 ---
 import format from "date-fns/format"
+import { toHTML } from "@portabletext/to-html"
 import sanityClient from "../../lib/sanityClient"
-import { kebabCase } from "../../lib/utils"
+import { kebabCase, portableTextComponents } from "../../lib/utils"
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import PortableText from "../../components/PortableText"
-import { components } from "../../components/PortableTextComponents"
 import { postQuery } from "../../lib/queries"
 import { Post } from "../../lib/interfaces"
 
@@ -51,7 +50,7 @@ const tags = keywords.split(", ")
     <h1>{title}</h1>
     <p>published on: {date}</p>
     <p>by:
-      <a href={`/author/${author.slug}`}>{post.author.name}</a>
+      <a href={`/authors/${author.slug}`}>{post.author.name}</a>
     </p>
     <ul>
       in: {categories.map(category =>
@@ -63,9 +62,15 @@ const tags = keywords.split(", ")
         <li><a href={`/tags/${kebabCase(tag)}`}>{tag}</a></li>
       )}
     </ul>
-    {body && <PortableText value={body} components={components} />}
-    {previous ? <p><a href={`/blog/${previous.slug}`}>Previous post</a></p> : <p>&nbsp;</p>}
-    {next ? <p><a href={`/blog/${next.slug}`}>Next post</a></p> : <p>&nbsp;</p>}
+    <div class="body">
+      {body && toHTML(body, {components: portableTextComponents})}
+    </div>
+    {previous
+      ? <p><a href={`/blog/${previous.slug}`}>Previous post</a></p>
+      : <p>&nbsp;</p>}
+    {next
+      ? <p><a href={`/blog/${next.slug}`}>Next post</a></p>
+      : <p>&nbsp;</p>}
   </div>
 </BaseLayout>
 

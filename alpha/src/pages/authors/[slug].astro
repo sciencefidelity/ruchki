@@ -1,9 +1,9 @@
 ---
 import format from "date-fns/format"
+import { toHTML } from "@portabletext/to-html"
 import sanityClient from "../../lib/sanityClient"
+import { portableTextComponents } from "../../lib/utils"
 import BaseLayout from "../../layouts/BaseLayout.astro"
-import PortableText from "../../components/PortableText"
-import { components } from "../../components/PortableTextComponents"
 import { authorsQuery } from "../../lib/queries"
 import { Author } from "../../lib/interfaces"
 
@@ -27,7 +27,7 @@ const title = `Author: ${author.name}`
     <h1>{title}</h1>
     <h2>Bio</h2>
     {author.body &&
-      <PortableText value={author.body} components={components} />
+      toHTML(author.body, {components: portableTextComponents})
     }
     <h2>Posts</h2>
     <ul>
@@ -40,7 +40,3 @@ const title = `Author: ${author.name}`
     <p><a href="/authors">All authors</a></p>
   </div>
 </BaseLayout>
-
-<style>
-
-</style>

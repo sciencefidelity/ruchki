@@ -526,14 +526,22 @@
     "@portabletext/toolkit" "^1.0.4"
     "@portabletext/types" "^1.0.3"
 
-"@portabletext/toolkit@^1.0.4":
+"@portabletext/to-html@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@portabletext/to-html/-/to-html-1.0.2.tgz#4efa260f7eb49a6abbaef74843c5763dde366d1d"
+  integrity sha512-Cb5vQHyzKFeLopLTQazSo8O98uDSUzO2PopJT7ZpboecLRQ0AER0vF3ykMrmWXWP1S5PaGPvK/NdWz0NtpTX/g==
+  dependencies:
+    "@portabletext/toolkit" "^1.0.3"
+    "@portabletext/types" "^1.0.2"
+
+"@portabletext/toolkit@^1.0.3", "@portabletext/toolkit@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@portabletext/toolkit/-/toolkit-1.0.4.tgz#0187397655eee3a4924ace8cf2a364e15db60df7"
   integrity sha512-r8xMn8HYWAlNBjS7H5lpegWQM7izs0mAW9c6DnleyJSH92xyTyaiVbDIRePEViWlMgRtBzcO9mlRmOBwvbdG0Q==
   dependencies:
     "@portabletext/types" "^1.0.3"
 
-"@portabletext/types@^1.0.3":
+"@portabletext/types@^1.0.2", "@portabletext/types@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@portabletext/types/-/types-1.0.3.tgz#b23f832ae5331c1d864195a95eba34abf340597e"
   integrity sha512-SDDsdury2SaTI2D5Ea6o+Y39SSZMYHRMWJHxkxYl3yzFP0n/0EknOhoXcoaV+bxGr2dTTqZi2TOEj+uWYuavSw==
@@ -787,6 +795,11 @@
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
+
+"@types/vhtml@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@types/vhtml/-/vhtml-2.2.4.tgz#761bce4b2aa63782b5b9a290c8e0c271b29f57cd"
+  integrity sha512-H7/C7RZuaoc45JRPKNTsyVwgCMNY9u20QKs1fz4pKKjwpnQe5Jo+YhFq5UQI+h5orsHg+3OZ2tJlUkxkIHUa2w==
 
 "@types/yargs-parser@^20.2.1":
   version "20.2.2"
@@ -2621,6 +2634,11 @@ hosted-git-info@^4.0.1:
   integrity sha512-kyCuEOWjJqZuDbRHzL8V93NzQhwIB71oFWSyzVo+KPZI+pnQPPxucdkrOZvkLRnrf5URsQM+IJ09Dw29cRALIA==
   dependencies:
     lru-cache "^6.0.0"
+
+htm@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/htm/-/htm-3.1.0.tgz#0c305493b60da9f6ed097a2aaf4c994bd85ea022"
+  integrity sha512-L0s3Sid5r6YwrEvkig14SK3Emmc+kIjlfLhEGn2Vy3bk21JyDEes4MoDsbJk6luaPp8bugErnxPz86ZuAw6e5Q==
 
 html-entities@^2.3.2:
   version "2.3.2"
@@ -5693,6 +5711,11 @@ vfile@^5.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
+
+vhtml@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vhtml/-/vhtml-2.2.0.tgz#369e6823ed6c32cbb9f6e33395bae7c65faa014c"
+  integrity sha512-TPXrXrxBOslRUVnlVkiAqhoXneiertIg86bdvzionrUYhEuiROvyPZNiiP6GIIJ2Q7oPNVyEtIx8gMAZZE9lCQ==
 
 vite@^2.8.6:
   version "2.8.6"

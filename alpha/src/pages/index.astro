@@ -1,10 +1,8 @@
 ---
 import sanityClient from "../lib/sanityClient"
 import BaseLayout from "../layouts/BaseLayout.astro"
-import Featured from "../components/Featured.astro"
+// import Featured from "../components/Featured.astro"
 import Latest from "../components/Latest.astro"
-import PortableText from "../components/PortableText"
-import { components } from "../components/PortableTextComponents"
 import { indexQuery } from "../lib/queries"
 import { Home } from "../lib/interfaces"
 
@@ -20,6 +18,3 @@ const title = "Home"
   <!-- <Featured /> -->
   <Latest />
 </BaseLayout>
-
-<style>
-</style>

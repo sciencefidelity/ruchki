@@ -1,3 +1,6 @@
+import htm from "htm"
+import vhtml from "vhtml"
+import { uriLooksSafe } from "@portabletext/to-html"
 import { BlockContent } from "../generated/schema"
 
 export const buildUrl = (type: string, slug: string): string => {
@@ -11,8 +14,37 @@ export const capitalize = (str: string): string => {
     .join(" ")
 }
 
+
 export const kebabCase = (str: string): string => {
   return str.toLowerCase().split(" ").join("-").replace(/[^a-z0-9-]/g, "")
+}
+
+const html = htm.bind(vhtml)
+export const portableTextComponents = {
+  marks: {
+    link: ({children, value}) => {
+      const href = value.href || ""
+      if (uriLooksSafe(href)) {
+        const rel = href.startsWith("/") ? undefined : "noreferrer"
+        return html`
+          <a href="${href}" rel="${rel}" class="text-rose-500 underline">
+            ${children}
+          </a>
+        `
+      }
+      return children
+    },
+    internalLink: ({children, value}) => {
+      return html`
+        <a
+          href=${buildUrl(value?.item._type, value?.item.slug)}
+          class="text-rose-500 underline"
+        >
+          ${children}
+        </a>
+      `
+    }
+  }
 }
 
 export const subdir = (type: string): string => {

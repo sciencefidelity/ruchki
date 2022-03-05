@@ -1,10 +1,10 @@
 ---
+import { toHTML } from "@portabletext/to-html"
 import sanityClient from "../lib/sanityClient"
+import { portableTextComponents } from "../lib/utils"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Blog from "../components/Blog.astro"
 import Contact from "../components/Contact.astro"
-import PortableText from "../components/PortableText"
-import { components } from "../components/PortableTextComponents"
 import { pagesQuery } from "../lib/queries"
 import { Page } from "../lib/interfaces"
 
@@ -41,12 +41,9 @@ const {
   <div>
     <h1>{title}</h1>
     {template === "article" &&
-      (body && <PortableText value={body} components={components} />)
+      (body && toHTML(body, {components: portableTextComponents}))
     }
     {template === "blog" && <Blog />}
     {template === "contact" && <Contact />}
   </div>
 </BaseLayout>
-
-<style>
-</style>
