@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build --experimental-static-build",
+    "build": "astro build",
     "preview": "astro preview",
     "lint": "concurrently 'yarn:lint:*'",
     "lint:styles": "stylelint '**/*.{astro,scss}' --ignore-path .eslintignore",
