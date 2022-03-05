@@ -518,14 +518,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@portabletext/react@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-1.0.3.tgz#44bc66ccf30c4ea18fc7e08fafd69bc2b6e7d00c"
-  integrity sha512-gZk8d5xHXQSsABTyOnh0YSC/bjKCJAEPhdgfjW0xH9L0HCU/eUhteEHVBSbsIO4oUMeNTCXJ/r/ar71TWcGltw==
-  dependencies:
-    "@portabletext/toolkit" "^1.0.4"
-    "@portabletext/types" "^1.0.3"
-
 "@portabletext/to-html@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@portabletext/to-html/-/to-html-1.0.2.tgz#4efa260f7eb49a6abbaef74843c5763dde366d1d"
@@ -534,7 +526,7 @@
     "@portabletext/toolkit" "^1.0.3"
     "@portabletext/types" "^1.0.2"
 
-"@portabletext/toolkit@^1.0.3", "@portabletext/toolkit@^1.0.4":
+"@portabletext/toolkit@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@portabletext/toolkit/-/toolkit-1.0.4.tgz#0187397655eee3a4924ace8cf2a364e15db60df7"
   integrity sha512-r8xMn8HYWAlNBjS7H5lpegWQM7izs0mAW9c6DnleyJSH92xyTyaiVbDIRePEViWlMgRtBzcO9mlRmOBwvbdG0Q==

@@ -16,7 +16,6 @@
     "fix:styles": "stylelint --fix '**/*.{astro,scss}' --ignore-path .eslintignore"
   },
   "devDependencies": {
-    "@portabletext/react": "^1.0.3",
     "@portabletext/to-html": "^1.0.2",
     "@sanity/client": "^3.1.0",
     "@types/react": "^17.0.39",
