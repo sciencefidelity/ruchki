@@ -19,7 +19,7 @@ const bg = [
   <!-- <h2 class="text-3xl font-bold mb-7">Latest Posts</h2> -->
   <div class="posts-cards grid grid-cols-1 gap-v md:grid-cols-2 lg:grid-cols-3">
     {posts.map((post, idx) =>
-      <article class="posts-card">
+      <article class={`posts-card ${idx === 0 ? "post-card-large" : ""}`}>
         <a href={`/blog/${post.slug}`} class="mb-6">
           <!-- <img /> -->
           <div
@@ -80,3 +80,14 @@ const bg = [
     )}
   </div>
 </section>
+
+<style lang="scss">
+  .post-card-large {
+    grid-column: 1/span 3;
+    display: grid;
+    grid-gap: 4vmin;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 280px;
+    border-top: 0;
+  }
+</style>
