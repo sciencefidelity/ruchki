@@ -62,9 +62,9 @@ const tags = keywords.split(", ")
         <li><a href={`/tags/${kebabCase(tag)}`}>{tag}</a></li>
       )}
     </ul>
-    <div class="body">
-      {body && toHTML(body, {components: portableTextComponents})}
-    </div>
+    <div
+      set:html={body && toHTML(body, {components: portableTextComponents})}
+    />
     {previous
       ? <p><a href={`/blog/${previous.slug}`}>Previous post</a></p>
       : <p>&nbsp;</p>}
