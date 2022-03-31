@@ -1,6 +1,9 @@
+import { defineConfig } from "astro/config"
 import { resolve } from "path"
+import react from "@astrojs/react"
+import svelte from "@astrojs/svelte"
 
-export default {
+export default defineConfig({
   projectRoot: '.',
   // https://docs.astro.build/en/reference/configuration-reference/
   buildOptions: {
@@ -10,7 +13,7 @@ export default {
   devOptions: {
     hostname: "0.0.0.0",
   },
-  renderers: ["@astrojs/renderer-react", "@astrojs/renderer-svelte"],
+  integrations: [react(), svelte()],
   vite: {
     resolve: {
       alias: {
@@ -23,4 +26,4 @@ export default {
       }
     }
   }
-}
+})
