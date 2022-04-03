@@ -5,8 +5,9 @@
   "author": "Matt Cook <matt@sciencefidelity.co.uk>",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "astro dev --host",
+    "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "lint": "concurrently 'yarn:lint:*'",
