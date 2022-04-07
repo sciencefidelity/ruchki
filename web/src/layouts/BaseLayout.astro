@@ -1,8 +1,12 @@
 ---
-import Footer from "../components/Footer.astro"
-import "../styles/global.scss"
+import "sanitize.css/sanitize.css"
+import "sanitize.css/assets.css"
+import "sanitize.css/reduce-motion.css"
+import "sanitize.css/typography.css"
+import "styles/global.scss"
+import Footer from "components/Footer.astro"
+import "styles/global.scss"
 const {title} = Astro.props
-import "../styles/global.scss"
 ---
 <html lang="en">
   <head>
@@ -18,7 +22,6 @@ import "../styles/global.scss"
     <link rel="mask-icon" href="/mask-icon.svg" color="#FFDC5D" />
 
     <meta name="theme-color" content="#ffffff" />
-    <link rel="stylesheet" href={Astro.resolve('../styles/global.scss')}>
 
   </head>
   <body>
