@@ -1,9 +1,9 @@
 ---
-import sanityClient from "../../lib/sanityClient"
-import { kebabCase } from "../../lib/utils"
-import BaseLayout from "../../layouts/BaseLayout.astro"
-import { tagsQuery } from "../../lib/queries"
-import { Post } from "../../lib/interfaces"
+import sanityClient from "lib/sanityClient"
+import { kebabCase } from "lib/utils"
+import BaseLayout from "layouts/BaseLayout.astro"
+import { tagsQuery } from "lib/queries"
+import { Post } from "lib/interfaces"
 
 export async function getStaticPaths() {
   const data: { posts: Post[] } = await sanityClient
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
     }
   })
 }
-const { slug } = Astro.request.params
+const { slug } = Astro.params
 const { tag } = Astro.props as { tag: string }
 const title = `Tag: ${tag}`
 ---
