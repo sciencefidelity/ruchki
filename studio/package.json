@@ -16,6 +16,18 @@
   "keywords": [
     "sanity"
   ],
+  "yarn-upgrade-all": {
+    "ignore": [
+      "@sanity/base",
+      "@sanity/core",
+      "@sanity/default-layout",
+      "@sanity/default-login",
+      "@sanity/desk-tool",
+      "@sanity/vision",
+      "react",
+      "react-dom"
+    ]
+  },
   "dependencies": {
     "@sanity/base": "^2.30.1",
     "@sanity/core": "^2.30.1",
@@ -24,13 +36,11 @@
     "@sanity/desk-tool": "^2.30.1",
     "@sanity/vision": "^2.30.1",
     "prop-types": "^15.8.1",
-    "react-dom": "^17.0.2",
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "prettier": "^2.6.2",
-    "styled-components": "^5.3.5",
-    "add": "^2.0.6",
-    "sanity-codegen": "^0.9.8"
+    "styled-components": "^5.3.5"
   }
 }
