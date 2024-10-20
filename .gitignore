@@ -1,7 +1,4 @@
-node_modules
-*.log
-*.bak
+.direnv
+bak
 .DS_Store
-dist
-.env
-.env.*
+node_modules
