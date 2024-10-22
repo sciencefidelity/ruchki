@@ -1,6 +1,10 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import type { PageData } from './$types';
 	import Latest from '$lib/Latest.svelte';
+
+	export let data: PageData;
 </script>
 
-<Latest posts={$page.data.posts} />
+{#if data.posts}
+	<Latest posts={data.posts} />
+{/if}

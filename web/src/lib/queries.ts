@@ -28,52 +28,23 @@ const siteFields = `
   url
 `;
 
-export const authorsQuery = groq`{
-  "authors": *[_type == "author" && ${omitDrafts}]{
+export const layoutQuery = groq`{
+  "site": *[_type == "site"][0]{
+    ${siteFields}
+  },
+  "home": *[_type == "home" && ${omitDrafts}][0]{
     ${body},
-    name,
-    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{
-      publishedAt, "slug": slug.current, title
-    },
-    "slug": slug.current
-  }[count(posts) > 0]
-}`;
-
-export const blogQuery = groq`{
-  "posts": *[_type == "post"] | order(publishedAt desc){
-    publishedAt,
-    "slug": slug.current,
     title
-  }
-}`;
-
-export const categoriesQuery = groq`{
-  "categories": *[_type == "category" && ${omitDrafts}] | order(title){
-    _id,
-    "posts": *[_type == "post" && references(^._id) && ${omitDrafts}] | order(publishedAt desc){
-      _id, publishedAt, "slug": slug.current, title
-    },
-    "slug": slug.current,
-    title
-  }[count(posts) > 0]
-}`;
-
-export const featuredPostsQuery = groq`{
-  "posts": *[_type == "home" && ${omitDrafts}][0]{
-    featured[0..2]->{
-      author->{name, "slug": slug.current},
-      body,
-      categories[]->{
-        _id, "slug": slug.current, title
-      },
-      publishedAt,
+  },
+  "menu": *[_type == "menu"][0]{
+    "items": items[]->{
       "slug": slug.current,
-      title,
+      title
     }
   }
 }`;
 
-export const latestPostsQuery = groq`{
+export const blogQuery = groq`{
   "posts": *[_type == "post"] | order(publishedAt desc)[0..7]{
     author->{name, "slug": slug.current},
     body,
@@ -86,18 +57,8 @@ export const latestPostsQuery = groq`{
   }
 }`;
 
-export const layoutQuery = groq`{
-  "site": *[_type == "site"][0]{
-    ${siteFields}
-  },
-  "home": *[_type == "home" && ${omitDrafts}][0]{
-    ${body},
-    title
-  },
-}`;
-
 export const postQuery = groq`{
-  "posts": *[_type == "post" && ${omitDrafts}]{
+  "post": *[_type == "post" && ${omitDrafts} && slug.current == $slug][0]{
     author->{
       name,
       "slug": slug.current,
@@ -107,6 +68,7 @@ export const postQuery = groq`{
     "categories": categories[]->{
       _id, "slug": slug.current, title
     },
+    mainImage,
     "next": *[
       _type == 'post' && publishedAt > ^.publishedAt && ${omitDrafts}
     ] | order(publishedAt asc)[0]{
@@ -128,40 +90,58 @@ export const postQuery = groq`{
   }
 }`;
 
-export const indexQuery = groq`{
-  "home": *[_type == "home" && ${omitDrafts}][0]{
-    ${body},
-    title
-  },
-  "posts": *[_type == "post"] | order(publishedAt desc)[0..7]{
-    author->{name, "slug": slug.current},
-    body,
-    categories[]->{
-      _id, "slug": slug.current, title
-    },
-    publishedAt,
-    "slug": slug.current,
-    title,
-  }
-}`;
-
-export const navQuery = groq`{
-  "menu": *[_type == "menu"][0]{
-    "item": items[]->{
-      "slug": slug.current,
-      title
-    }
-  }
-}`;
-
-export const pagesQuery = groq`{
-  "pages": *[_type == "page" && ${omitDrafts}]{
+export const pageQuery = groq`{
+  "page": *[_type == "page" && ${omitDrafts} && slug.current == $slug][0]{
     ${body},
     ${seo},
     "slug": slug.current,
     template[0],
     title
   }
+}`;
+
+export const authorsQuery = groq`{
+  "authors": *[_type == "author" && ${omitDrafts}]{
+    ${body},
+    name,
+    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{
+      publishedAt, "slug": slug.current, title
+    },
+    "slug": slug.current
+  }[count(posts) > 0]
+}`;
+
+export const authorQuery = groq`{
+  "author": *[_type == "author" && ${omitDrafts} && slug.current == $slug]{
+    ${body},
+    name,
+    "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{
+      publishedAt, "slug": slug.current, title
+    },
+    "slug": slug.current
+  }[count(posts) > 0][0]
+}`;
+
+export const categoriesQuery = groq`{
+  "categories": *[_type == "category" && ${omitDrafts}] | order(title){
+    _id,
+    "posts": *[_type == "post" && references(^._id) && ${omitDrafts}] | order(publishedAt desc){
+      _id, publishedAt, "slug": slug.current, title
+    },
+    "slug": slug.current,
+    title
+  }[count(posts) > 0]
+}`;
+
+export const categoryQuery = groq`{
+  "category": *[_type == "category" && ${omitDrafts} && slug.current == $slug] | order(title){
+    _id,
+    "posts": *[_type == "post" && references(^._id) && ${omitDrafts}] | order(publishedAt desc){
+      _id, publishedAt, "slug": slug.current, title
+    },
+    "slug": slug.current,
+    title
+  }[count(posts) > 0][0]
 }`;
 
 export const tagsQuery = groq`{

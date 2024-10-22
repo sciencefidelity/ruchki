@@ -1,16 +1,21 @@
-<script>
-	import { page } from '$app/stores';
+<script lang="ts">
+	import type { LayoutData } from './$types';
 	import Footer from '$lib/Footer.svelte';
 	import GlobalStyles from '$lib/GlobalStyles.svelte';
 	import Header from '$lib/Header.svelte';
 
-	const { site, home } = $page.data;
+	export let data: LayoutData;
+	const { site, home, menu } = data;
 </script>
 
 <GlobalStyles>
-	<Header siteName={site.siteName} subtitle={home.title} />
+	{#if site && home && menu}
+		<Header siteName={site.siteName} subtitle={home.title} {menu} />
+	{/if}
 	<main class="container mx-auto mb-20 mt-10">
 		<slot></slot>
 	</main>
-	<Footer siteName={site.siteName} />
+	{#if site}
+		<Footer siteName={site.siteName} />
+	{/if}
 </GlobalStyles>

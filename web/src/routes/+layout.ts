@@ -1,14 +1,15 @@
 import sanityClient from '$lib/sanityClient';
 import { layoutQuery } from '$lib/queries';
-import type { Home, Site } from '$lib/interfaces';
+import type { LayoutQueryResult } from '$lib/types';
 
 export async function load() {
-	const data: { site: Site; home: Home } = await sanityClient.fetch(layoutQuery);
-	const { site, home } = data;
+	const data: LayoutQueryResult = await sanityClient.fetch(layoutQuery);
+	const { site, home, menu } = data;
 	if (site) {
 		return {
 			site,
-			home
+			home,
+			menu
 		};
 	}
 	return {

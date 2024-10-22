@@ -1,9 +1,9 @@
 import sanityClient from '$lib/sanityClient';
-import { blogQuery } from '$lib/queries';
-import type { BlogQueryResult } from '$lib/types';
+import { tagsQuery } from '$lib/queries';
+import type { TagsQueryResult } from '$lib/types';
 
 export async function load() {
-	const data: BlogQueryResult = await sanityClient.fetch(blogQuery);
+	const data: TagsQueryResult = await sanityClient.fetch(tagsQuery);
 	let { posts } = data;
 	if (posts) {
 		return {
