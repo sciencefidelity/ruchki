@@ -1,46 +1,37 @@
 {
-  "name": "inourhands-studio",
+  "name": "in-our-hands",
   "private": true,
-  "version": "0.1.0",
-  "description": "The answers to all problems depend on achieving inner awakening",
+  "version": "1.0.0",
   "main": "package.json",
-  "author": "Matt Cook <matt@sciencefidelity.co.uk>",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "sanity start",
+    "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
-    "clean": "rm -rf dist",
-    "format": "prettier --write '**/*.{ts,js,tsx,jsx,json,md,yml}'"
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy"
   },
   "keywords": [
     "sanity"
   ],
-  "yarn-upgrade-all": {
-    "ignore": [
-      "@sanity/base",
-      "@sanity/core",
-      "@sanity/default-layout",
-      "@sanity/default-login",
-      "@sanity/desk-tool",
-      "@sanity/vision",
-      "react",
-      "react-dom"
-    ]
-  },
   "dependencies": {
-    "@sanity/base": "^2.31.0",
-    "@sanity/core": "^2.31.0",
-    "@sanity/default-layout": "^2.31.0",
-    "@sanity/default-login": "^2.31.0",
-    "@sanity/desk-tool": "^2.31.0",
-    "@sanity/vision": "^2.31.0",
-    "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@sanity/vision": "^3.61.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sanity": "^3.61.0",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
-    "prettier": "^2.6.2",
-    "styled-components": "^5.3.5"
+    "@sanity/eslint-config-studio": "^4.0.0",
+    "@types/react": "^18.0.25",
+    "eslint": "^8.6.0",
+    "prettier": "^3.0.2",
+    "typescript": "^5.1.6"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }
