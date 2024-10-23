@@ -5,7 +5,6 @@
 	export let data: PageData;
 
 	const { page } = data;
-	$: console.log(data.page);
 </script>
 
 <div>

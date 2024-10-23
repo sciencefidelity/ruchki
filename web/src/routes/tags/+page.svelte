@@ -1,17 +1,19 @@
 <script lang="ts">
-	import { kebabCase } from '$lib/utils';
-	import type { PageData } from '../$types';
+	import kebabCase from 'lodash.kebabCase';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
 
-	const tags = [
-		...new Set(
-			data.posts
-				.map((e) => e.keywords.split(', '))
-				.flat(1)
-				.sort()
-		)
-	];
+	const tags = data.posts
+		? [
+				...new Set(
+					data.posts
+						.map((e) => e.keywords.split(', '))
+						.flat(1)
+						.sort()
+				)
+			]
+		: [];
 </script>
 
 <div>

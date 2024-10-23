@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { MenuItem } from '$lib/types';
 
-	export let siteName: string | null;
+	export let siteName: string;
 	export let items: MenuItem[] | null;
 </script>
 
-<nav class="inner mx-auto py-3 leading-8 text-white">
+<nav class="container mx-auto h-14 py-3 leading-8 text-white">
 	<ul class="flex gap-7">
 		<li>
 			{#if siteName}

@@ -2,7 +2,7 @@
 	import { format } from 'date-fns';
 	import { PortableText } from '@portabletext/svelte';
 	import type { PageData } from './$types';
-	import { kebabCase } from '$lib/utils';
+	import kebabCase from 'lodash.kebabcase';
 
 	export let data: PageData;
 

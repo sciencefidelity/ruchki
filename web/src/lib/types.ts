@@ -111,11 +111,15 @@ export type CategoriesQueryResult = {
 };
 
 export type CategoryQueryResult = {
-	category: Category;
+	category: Category & {
+		posts: PostPreview[];
+	};
 };
 
 export type TagsQueryResult = {
-	posts: string;
+	posts: {
+		keywords: string;
+	}[];
 };
 
 export type TagQueryResult = {

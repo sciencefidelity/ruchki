@@ -1,17 +1,15 @@
 <script lang="ts">
-	export let siteName: string | null;
+	export let siteName: string;
 
 	const year = new Date().getFullYear();
 </script>
 
-<footer class="outer bg-zinc-700">
-	<div class="inner mx-auto grid grid-cols-3 pb-40 pt-10 text-sm text-gray-100">
-		{#if siteName}
-			<p>
-				<a href="/">{siteName}</a>
-				&copy; {year}
-			</p>
-		{/if}
+<footer class="flex-none bg-zinc-700">
+	<div class="container mx-auto grid grid-cols-3 pb-40 pt-10 text-sm text-gray-100">
+		<p>
+			<a href="/">{siteName}</a>
+			&copy; {year}
+		</p>
 		<p class="text-center">Data & privacy &bull; Contact</p>
 		<p class="text-right">
 			Powered by

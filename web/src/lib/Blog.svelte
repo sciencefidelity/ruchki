@@ -2,20 +2,19 @@
 	import { format } from 'date-fns';
 	import type { PostPreview } from '$lib/types';
 
-	export let posts: PostPreview[] | null;
+	export let posts: PostPreview[];
 </script>
 
 <ul>
-	{#if posts}
-		{#each posts as { slug, publishedAt, title }}
-			<li>
-				{#if slug && title}
-					<a href={`/blog/${slug}`}>{title}</a>
-				{/if}
-				{#if publishedAt}
-					{format(new Date(publishedAt), 'eeee, do MMMM yyyy')}
-				{/if}
-			</li>
-		{/each}
+	{#if posts.length == 0}
+		No posts yet.
 	{/if}
+	{#each posts as { slug, publishedAt, title }}
+		<li>
+			<a href="/blog/{slug}">{title}</a>
+			{#if publishedAt}
+				{format(new Date(publishedAt), 'eeee, do MMMM yyyy')}
+			{/if}
+		</li>
+	{/each}
 </ul>
