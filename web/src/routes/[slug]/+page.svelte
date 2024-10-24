@@ -5,7 +5,7 @@
 	type Props = { data: PageData };
 
 	const { data }: Props = $props();
-	const { page } = data;
+	const page = $derived(data.page);
 </script>
 
 <div class="pt mx-auto mb-7 max-w-2xl font-serif text-xl leading-8 text-gray-800">
