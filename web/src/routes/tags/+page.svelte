@@ -1,5 +1,5 @@
 <script lang="ts">
-	import kebabCase from 'lodash.kebabCase';
+	import kebabCase from 'lodash.kebabcase';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();

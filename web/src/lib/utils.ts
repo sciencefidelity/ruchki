@@ -10,3 +10,17 @@ export function toPlainText(blocks: BlockContent = []) {
 		})
 		.join('\n\n');
 }
+
+export function getExcerpt(input: string, maxLength: number = 210): string {
+	const sentences = input.match(/[^.!?]+[.!?]+/g);
+	if (!sentences) return '';
+	let result = '';
+	for (const sentence of sentences) {
+		if (result.length + sentence.length <= maxLength) {
+			result += sentence;
+		} else {
+			break;
+		}
+	}
+	return result.trim();
+}
