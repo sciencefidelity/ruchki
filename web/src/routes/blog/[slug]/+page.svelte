@@ -3,7 +3,7 @@
 	import kebabCase from 'lodash.kebabcase';
 	import type { PageData } from './$types';
 	import PostMeta from '$lib/PostMeta.svelte';
-	import { toPlainText } from '$lib/utils';
+	import { portableTextComponents, toPlainText } from '$lib/utils';
 
 	type Props = { data: PageData };
 
@@ -41,7 +41,7 @@
 
 		{#if post.body}
 			<div class="pt mx-auto mb-12 max-w-2xl font-serif text-xl leading-8 text-gray-800">
-				<PortableText value={post.body} components={{}} />
+				<PortableText value={post.body} components={portableTextComponents} />
 			</div>
 		{/if}
 		<footer class="mx-auto max-w-2xl">
@@ -56,12 +56,12 @@
 			</ul>
 			<nav class="flex justify-between">
 				{#if post.next}
-					<p><a href="/blog/${post.next.slug}">← {post.next.title}</a></p>
+					<p><a href="/blog/{post.next.slug}">← {post.next.title}</a></p>
 				{:else}
 					<p>&nbsp;</p>
 				{/if}
 				{#if post.previous}
-					<p><a href="/blog/${post.previous.slug}">{post.previous.title} →</a></p>
+					<p><a href="/blog/{post.previous.slug}">{post.previous.title} →</a></p>
 				{:else}
 					<p>&nbsp;</p>
 				{/if}

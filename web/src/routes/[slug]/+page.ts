@@ -4,7 +4,8 @@ import type { PageQueryResult } from '$lib/types';
 
 export async function load({ params }: { params: { slug: string } }) {
 	const data: PageQueryResult = await sanityClient.fetch(pageQuery, { slug: params.slug });
-	if (data) {
+	const { page } = data;
+	if (page) {
 		return {
 			page: data.page
 		};

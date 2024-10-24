@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { format } from 'date-fns';
 	import { toPlainText } from '$lib/utils';
 	import type { PostPreview } from '$lib/types';
 	import { getExcerpt } from '$lib/utils';
@@ -46,7 +45,7 @@
 					{#if body}
 						<p class="font-serif text-slate-500">
 							{getExcerpt(plainText, 280)}..
-							<a href="/blog/{slug}" class="text-sky-600 underline">read more</a>
+							<a href="/blog/{slug}" class="text-sky-600 underline">read&nbsp;more</a>
 						</p>
 					{/if}
 				</div>
