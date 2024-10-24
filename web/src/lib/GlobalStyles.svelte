@@ -2,7 +2,9 @@
 	import type { Snippet } from 'svelte';
 	import '../app.css';
 
-	const { children }: { children: Snippet } = $props();
+	type Props = { children: Snippet };
+
+	const { children }: Props = $props();
 </script>
 
 {@render children()}

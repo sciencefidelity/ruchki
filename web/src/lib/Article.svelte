@@ -2,7 +2,9 @@
 	import { PortableText } from '@portabletext/svelte';
 	import type { Page } from '$lib/types';
 
-	const { page }: { page: Page } = $props();
+	type Props = { page: Page };
+
+	const { page }: Props = $props();
 </script>
 
 {#if page.body}

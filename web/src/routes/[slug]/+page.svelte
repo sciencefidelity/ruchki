@@ -2,8 +2,9 @@
 	import type { PageData } from './$types';
 	import Article from '$lib/Article.svelte';
 
-	const { data }: { data: PageData } = $props();
+	type Props = { data: PageData };
 
+	const { data }: Props = $props();
 	const { page } = data;
 </script>
 

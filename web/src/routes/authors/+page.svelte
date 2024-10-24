@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	const { data }: { data: PageData } = $props();
+	type Props = { data: PageData };
 
+	const { data }: Props = $props();
 	const { authors } = data;
 </script>
 

@@ -5,12 +5,14 @@ export type Author = {
 	slug: string | null;
 	twitterHandle: string | null;
 	body: BlockContent | null;
+	posts: PostPreview[];
 };
 
 export type Category = {
 	_id: string;
 	slug: string | null;
 	title: string | null;
+	posts: PostPreview[];
 };
 
 export type Home = {
@@ -49,6 +51,27 @@ export type PostPreview = {
 	title: string | null;
 };
 
+export type Post = {
+	author: Author | null;
+	body: BlockContent | null;
+	categories: Category[] | null;
+	next: PostNavigation | null;
+	previous: PostNavigation | null;
+	publishedAt: string | null;
+	keywords: string | null;
+	seoDescription: string | null;
+	seoImage: SanityImageAsset | null;
+	seoTitle: string | null;
+	slug: string | null;
+	title: string | null;
+};
+
+type PostNavigation = {
+	publishedAt: string | null;
+	slug: string | null;
+	title: string | null;
+};
+
 export type Site = {
 	siteDescription: string | null;
 	siteName: string | null;
@@ -71,28 +94,7 @@ export type BlogQueryResult = {
 };
 
 export type PostQueryResult = {
-	post: {
-		author: Author | null;
-		body: BlockContent | null;
-		categories: Category[] | null;
-		next: {
-			publishedAt: string | null;
-			slug: string | null;
-			title: string | null;
-		} | null;
-		previous: {
-			publishedAt: string | null;
-			slug: string | null;
-			title: string | null;
-		} | null;
-		publishedAt: string | null;
-		keywords: string | null;
-		seoDescription: string | null;
-		seoImage: SanityImageAsset | null;
-		seoTitle: string | null;
-		slug: string | null;
-		title: string | null;
-	};
+	post: Post;
 };
 
 export type PageQueryResult = {
@@ -100,16 +102,11 @@ export type PageQueryResult = {
 };
 
 export type AuthorsQueryResult = {
-	authors: Author &
-		{
-			posts: PostPreview[];
-		}[];
+	authors: Author[];
 };
 
 export type AuthorQueryResult = {
-	author: Author & {
-		posts: PostPreview[];
-	};
+	author: Author;
 };
 
 export type CategoriesQueryResult = {
@@ -117,9 +114,7 @@ export type CategoriesQueryResult = {
 };
 
 export type CategoryQueryResult = {
-	category: Category & {
-		posts: PostPreview[];
-	};
+	category: Category;
 };
 
 export type TagsQueryResult = {

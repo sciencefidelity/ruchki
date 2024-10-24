@@ -4,7 +4,7 @@
 	type Props = {
 		children: Snippet;
 		title: string;
-		subtitle: string;
+		subtitle: string | null;
 	};
 
 	const { children, title, subtitle }: Props = $props();

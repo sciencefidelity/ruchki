@@ -4,8 +4,9 @@
 	import type { PageData } from './$types';
 	import kebabCase from 'lodash.kebabcase';
 
-	let { data }: { data: PageData } = $props();
+	type Props = { data: PageData };
 
+	const { data }: Props = $props();
 	const { post } = data;
 	const tags = post?.keywords?.split(', ') || [];
 

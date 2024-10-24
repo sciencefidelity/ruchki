@@ -2,8 +2,9 @@
 	import { format } from 'date-fns';
 	import type { PageData } from './$types';
 
-	const { data }: { data: PageData } = $props();
+	type Props = { data: PageData };
 
+	const { data }: Props = $props();
 	const { category } = data;
 </script>
 

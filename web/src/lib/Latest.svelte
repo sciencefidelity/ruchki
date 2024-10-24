@@ -4,8 +4,9 @@
 	import type { PostPreview } from '$lib/types';
 	import { getExcerpt } from '$lib/utils';
 
-	const { posts }: { posts: PostPreview[] } = $props();
+	type Props = { posts: PostPreview[] };
 
+	const { posts }: Props = $props();
 	const bg = ['bg-pink-600', 'bg-amber-300', 'bg-cyan-500', 'bg-sky-600'];
 </script>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
-	const { siteName }: { siteName: string } = $props();
+	type Props = { siteName: string };
 
+	const { siteName }: Props = $props();
 	const year = new Date().getFullYear();
 </script>
 

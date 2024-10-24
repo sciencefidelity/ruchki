@@ -1,0 +1,13 @@
+{
+  "name": "ruchki",
+  "version": "0.1.0",
+  "description": "A blog template with Svelte and Sanity",
+  "keywords": [
+    "svelte",
+    "sanity",
+    "tailwind"
+  ],
+  "author": "Matt Cook <matt@mattcook.dev>",
+  "repository": "https://github.com/ruchki",
+  "license": "GNU GPLv3"
+}

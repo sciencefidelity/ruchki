@@ -2,7 +2,9 @@
 	import { format } from 'date-fns';
 	import type { PostPreview } from '$lib/types';
 
-	const { posts }: { posts: PostPreview[] } = $props();
+	type Props = { posts: PostPreview[] };
+
+	const { posts }: Props = $props();
 </script>
 
 <ul>

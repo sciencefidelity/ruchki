@@ -2,8 +2,9 @@
 	import kebabCase from 'lodash.kebabcase';
 	import type { PageData } from './$types';
 
-	const { data }: { data: PageData } = $props();
+	type Props = { data: PageData };
 
+	const { data }: Props = $props();
 	const tags = data.posts
 		? [
 				...new Set(

@@ -3,8 +3,9 @@
 	import { PortableText } from '@portabletext/svelte';
 	import type { PageData } from './$types';
 
-	const { data }: { data: PageData } = $props();
+	type Props = { data: PageData };
 
+	const { data }: Props = $props();
 	const { author } = data;
 </script>
 

@@ -6,8 +6,12 @@
 	import Header from '$lib/Header.svelte';
 	import Navbar from '$lib/Navbar.svelte';
 
-	let { children, data }: { children: Snippet; data: LayoutData } = $props();
+	type Props = {
+		children: Snippet;
+		data: LayoutData;
+	};
 
+	const { children, data }: Props = $props();
 	const { site, home, menu } = data;
 	let title = null;
 </script>
