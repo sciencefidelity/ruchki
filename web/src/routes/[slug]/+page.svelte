@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { PortableText } from '@portabletext/svelte';
+	import PortableText from '$lib/PortableText.svelte';
 
 	type Props = { data: PageData };
 
@@ -10,7 +10,7 @@
 
 <div class="pt mx-auto mb-7 max-w-2xl font-serif text-xl leading-8 text-gray-800">
 	{#if page && page.body}
-		<PortableText value={page.body} components={{}} />
+		<PortableText body={page.body} />
 	{/if}
 </div>
 

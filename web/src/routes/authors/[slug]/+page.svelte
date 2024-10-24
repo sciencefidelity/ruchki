@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import { PortableText } from '@portabletext/svelte';
+	import PortableText from '$lib/PortableText.svelte';
 	import type { PageData } from './$types';
 
 	type Props = { data: PageData };
@@ -14,7 +14,7 @@
 		<h1>{author.name}</h1>
 		<h2>Bio</h2>
 		{#if author.body}
-			<PortableText value={author.body} components={{}} />
+			<PortableText body={author.body} />
 		{/if}
 		<h2>Posts</h2>
 		<ul>

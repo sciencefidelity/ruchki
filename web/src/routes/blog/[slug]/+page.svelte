@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { PortableText } from '@portabletext/svelte';
 	import kebabCase from 'lodash.kebabcase';
 	import type { PageData } from './$types';
+	import PortableText from '$lib/PortableText.svelte';
 	import PostMeta from '$lib/PostMeta.svelte';
-	import { portableTextComponents, toPlainText } from '$lib/utils';
+	import { toPlainText } from '$lib/utils';
 
 	type Props = { data: PageData };
 
@@ -40,8 +40,8 @@
 		</header>
 
 		{#if post.body}
-			<div class="pt mx-auto mb-12 max-w-2xl font-serif text-xl leading-8 text-gray-800">
-				<PortableText value={post.body} components={portableTextComponents} />
+			<div class="mx-auto mb-12 max-w-2xl">
+				<PortableText body={post.body} />
 			</div>
 		{/if}
 		<footer class="mx-auto max-w-2xl">
@@ -54,14 +54,26 @@
 					</li>
 				{/each}
 			</ul>
-			<nav class="flex justify-between">
+			<nav class="grid grid-cols-2 justify-between gap-8">
 				{#if post.next}
-					<p><a href="/blog/{post.next.slug}">← {post.next.title}</a></p>
+					<div class="w-full">
+						<p class="text-xs uppercase leading-6 text-pink-500">← Next post</p>
+						<p>
+							<a href="/blog/{post.next.slug}" class="hover:text-rose-500">{post.next.title}</a>
+						</p>
+					</div>
 				{:else}
 					<p>&nbsp;</p>
 				{/if}
 				{#if post.previous}
-					<p><a href="/blog/{post.previous.slug}">{post.previous.title} →</a></p>
+					<div class="text-right">
+						<p class="text-xs uppercase leading-6 text-pink-500">Previous post →</p>
+						<p>
+							<a href="/blog/{post.previous.slug}" class="hover:text-rose-500"
+								>{post.previous.title}</a
+							>
+						</p>
+					</div>
 				{:else}
 					<p>&nbsp;</p>
 				{/if}
@@ -69,9 +81,3 @@
 		</footer>
 	{/if}
 </div>
-
-<style>
-	:global(.pt p) {
-		margin-bottom: 2rem;
-	}
-</style>

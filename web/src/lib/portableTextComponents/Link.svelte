@@ -8,12 +8,12 @@
 		portableText: MarkComponentProps<{
 			_key: string;
 			_type: string;
-			blank: boolean;
+			blank: boolean | null;
 			href: string | null;
 			item: {
 				_type: string;
 				slug: string;
-			};
+			} | null;
 		}>;
 	};
 
@@ -23,12 +23,12 @@
 	const rel = href.startsWith('/') ? undefined : 'noreferrer';
 </script>
 
-{#if value.blank}
+{#if value.item == null}
 	<a {href} {rel} class="text-rose-500 underline" target="_blank">
 		{@render children()}
 	</a>
 {:else}
-	<a href={buildUrl(value?.item._type, value?.item.slug)} class="text-rose-500 underline">
+	<a href={buildUrl(value.item._type, value.item.slug)} class="text-rose-500 underline">
 		{@render children()}
 	</a>
 {/if}
