@@ -3,6 +3,7 @@
 	import { toPlainText } from '$lib/utils';
 	import type { PostPreview } from '$lib/types';
 	import { getExcerpt } from '$lib/utils';
+	import PostMeta from './PostMeta.svelte';
 
 	type Props = { posts: PostPreview[] };
 
@@ -14,10 +15,14 @@
 	{#if posts.length == 0}
 		No posts yet.
 	{/if}
-	<div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+	<div class="grid grid-cols-1 grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
 		{#each posts as { author, body, categories, publishedAt, slug, title }, idx}
 			{@const plainText = body ? toPlainText(body) : ''}
-			<article class={idx === 0 ? 'col-span-3 grid grid-cols-3 gap-8' : 'flex flex-col gap-6'}>
+			<article
+				class={idx === 0
+					? 'grid md:col-span-2 md:gap-8 lg:col-span-3 lg:grid-cols-3'
+					: 'flex flex-col gap-6'}
+			>
 				<header class:col-span-1={idx === 0}>
 					<a href="/blog/{slug}" class="mb-6" aria-label={title}>
 						<div class="aspect-video {bg[idx % 4]}"></div>
@@ -39,36 +44,14 @@
 						</a>
 					{/if}
 					{#if body}
-						<p class="serif text-slate-500">
+						<p class="font-serif text-slate-500">
 							{getExcerpt(plainText, 280)}..
 							<a href="/blog/{slug}" class="text-sky-600 underline">read more</a>
 						</p>
 					{/if}
 				</div>
-				<footer class="flex gap-3">
-					{#if author}
-						<a href="/authors/{author.slug}" aria-label={title}>
-							<div class="aspect-square h-9 rounded-full bg-stone-500"></div>
-						</a>
-					{/if}
-					<div class="flex flex-col">
-						{#if author}
-							<span class="text-sm font-medium">
-								<a href="/authors/{author.slug}">{author.name}</a>
-							</span>
-						{/if}
-						<span class="text-xs text-slate-500">
-							{#if publishedAt}
-								{@const formattedDate = format(new Date(publishedAt), 'yyyy-MM-dd')}
-								<time datetime={formattedDate}>{formattedDate}</time>
-							{/if}
-							{#if body}
-								<span class="mx-0.5 inline-block">&bull;</span>
-								{Math.ceil(plainText.split(/\W+/).length / 275)}
-								min read
-							{/if}
-						</span>
-					</div>
+				<footer>
+					<PostMeta {author} {publishedAt} {plainText} />
 				</footer>
 			</article>
 		{/each}

@@ -19,11 +19,11 @@
 <GlobalStyles>
 	{#if site && home && menu}
 		{@const siteName = site.siteName || 'Untitled'}
-		<div class="flex min-h-screen flex-col">
+		<div class="flex min-h-screen flex-col antialiased">
 			<Header title={title ? title : siteName} subtitle={home.title}>
 				<Navbar {siteName} items={menu.items} />
 			</Header>
-			<main class="container mx-auto mb-20 mt-16 grow">
+			<main class="container mx-auto mb-20 mt-16 grow px-4">
 				{@render children()}
 			</main>
 			<Footer {siteName} />
