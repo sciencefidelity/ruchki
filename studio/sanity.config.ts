@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'In Our Hands',
+  title: process.env.SANITY_STUDIO_TITLE || 'Untitled',
 
   projectId: process.env.SANITY_STUDIO_API_PROJECT_ID || '',
   dataset: process.env.SANITY_STUDIO_API_DATASET || '',
