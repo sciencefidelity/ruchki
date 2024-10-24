@@ -1,8 +1,11 @@
-<script>
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 	import '../app.css';
+
+	const { children }: { children: Snippet } = $props();
 </script>
 
-<slot />
+{@render children()}
 
 <style global>
 	:root {

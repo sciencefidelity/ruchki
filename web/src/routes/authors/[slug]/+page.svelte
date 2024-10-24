@@ -1,25 +1,28 @@
 <script lang="ts">
-	import { PortableText } from '@portabletext/svelte';
 	import { format } from 'date-fns';
-	import type { PageData } from '../$types';
+	import { PortableText } from '@portabletext/svelte';
+	import type { PageData } from './$types';
 
-	export let data: PageData;
+	const { data }: { data: PageData } = $props();
 
 	const { author } = data;
-	$: console.log(data);
 </script>
 
 <div>
 	{#if author}
-		<h1>{author.title}</h1>
+		<h1>{author.name}</h1>
 		<h2>Bio</h2>
-		<PortableText value={author.body} components={{}} />
+		{#if author.body}
+			<PortableText value={author.body} components={{}} />
+		{/if}
 		<h2>Posts</h2>
 		<ul>
 			{#each author.posts as post}
 				<li>
 					<a href="/blog/{post.slug}">{post.title}</a>
-					{format(new Date(post.publishedAt), 'eeee, do MMMM yyyy')}
+					{#if post.publishedAt}
+						{format(new Date(post.publishedAt), 'eeee, do MMMM yyyy')}
+					{/if}
 				</li>
 			{/each}
 		</ul>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { PostPreview } from '$lib/types';
-	import { toPlainText } from '$lib/utils';
 	import { format } from 'date-fns';
+	import { toPlainText } from '$lib/utils';
+	import type { PostPreview } from '$lib/types';
 
-	export let posts: PostPreview[];
+	const { posts }: { posts: PostPreview[] } = $props();
 
 	const bg = ['bg-pink-600', 'bg-amber-300', 'bg-cyan-500', 'bg-sky-600'];
 </script>

@@ -1,14 +1,15 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+	import type { LayoutData } from './$types';
 	import Footer from '$lib/Footer.svelte';
 	import GlobalStyles from '$lib/GlobalStyles.svelte';
 	import Header from '$lib/Header.svelte';
 	import Navbar from '$lib/Navbar.svelte';
-	import type { LayoutData } from './$types';
 
-	export let data: LayoutData;
+	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 
 	const { site, home, menu } = data;
-	const title = null;
+	let title = null;
 </script>
 
 <GlobalStyles>
@@ -19,7 +20,7 @@
 				<Navbar {siteName} items={menu.items} />
 			</Header>
 			<main class="container mx-auto mb-20 mt-10 grow">
-				<slot />
+				{@render children()}
 			</main>
 			<Footer {siteName} />
 		</div>

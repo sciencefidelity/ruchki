@@ -2,7 +2,7 @@
 	import { format } from 'date-fns';
 	import type { PostPreview } from '$lib/types';
 
-	export let posts: PostPreview[];
+	const { posts }: { posts: PostPreview[] } = $props();
 </script>
 
 <ul>

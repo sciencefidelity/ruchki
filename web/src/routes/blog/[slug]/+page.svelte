@@ -4,10 +4,15 @@
 	import type { PageData } from './$types';
 	import kebabCase from 'lodash.kebabcase';
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 
 	const { post } = data;
 	const tags = post?.keywords?.split(', ') || [];
+
+	let title = $state('Untitled');
+	if (post?.title) {
+		title = post.title;
+	}
 </script>
 
 <div>

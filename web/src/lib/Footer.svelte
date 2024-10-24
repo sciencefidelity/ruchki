@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let siteName: string;
+	const { siteName }: { siteName: string } = $props();
 
 	const year = new Date().getFullYear();
 </script>

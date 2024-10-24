@@ -4,6 +4,7 @@ export type Author = {
 	name: string | null;
 	slug: string | null;
 	twitterHandle: string | null;
+	body: BlockContent | null;
 };
 
 export type Category = {
@@ -99,11 +100,16 @@ export type PageQueryResult = {
 };
 
 export type AuthorsQueryResult = {
-	authors: Author[];
+	authors: Author &
+		{
+			posts: PostPreview[];
+		}[];
 };
 
 export type AuthorQueryResult = {
-	author: Author;
+	author: Author & {
+		posts: PostPreview[];
+	};
 };
 
 export type CategoriesQueryResult = {

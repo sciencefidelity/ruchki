@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import Latest from '$lib/Latest.svelte';
 
-	export let data: PageData;
+	const { data }: { data: PageData } = $props();
 </script>
 
 {#if data.posts}

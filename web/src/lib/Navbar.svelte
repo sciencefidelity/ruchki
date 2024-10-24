@@ -1,8 +1,12 @@
 <script lang="ts">
 	import type { MenuItem } from '$lib/types';
 
-	export let siteName: string;
-	export let items: MenuItem[] | null;
+	type Props = {
+		siteName: string;
+		items: MenuItem[] | null;
+	};
+
+	const { siteName, items }: Props = $props();
 </script>
 
 <nav class="container mx-auto h-14 py-3 leading-8 text-white">
