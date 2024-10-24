@@ -14,14 +14,16 @@
 	{#if posts.length == 0}
 		No posts yet.
 	{/if}
-	<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+	<div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
 		{#each posts as { author, body, categories, publishedAt, slug, title }, idx}
 			{@const plainText = body ? toPlainText(body) : ''}
-			<article class="flex flex-col">
-				<header>
+			<article class={idx === 0 ? 'col-span-3 grid grid-cols-3 gap-8' : 'flex flex-col gap-6'}>
+				<header class:col-span-1={idx === 0}>
 					<a href="/blog/{slug}" class="mb-6" aria-label={title}>
-						<div class="h-50 mb-6 aspect-video rounded-sm {bg[idx % 4]}"></div>
+						<div class="aspect-video {bg[idx % 4]}"></div>
 					</a>
+				</header>
+				<div>
 					{#if categories}
 						<a href="/categories/{categories[0].slug}">
 							<div class="mb-1.5 text-xs font-medium uppercase text-pink-500">
@@ -36,10 +38,8 @@
 							</h2>
 						</a>
 					{/if}
-				</header>
-				<div>
 					{#if body}
-						<p class="serif mb-5 text-slate-500">
+						<p class="serif text-slate-500">
 							{getExcerpt(plainText, 280)}..
 							<a href="/blog/{slug}" class="text-sky-600 underline">read more</a>
 						</p>

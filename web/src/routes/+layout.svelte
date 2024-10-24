@@ -23,7 +23,7 @@
 			<Header title={title ? title : siteName} subtitle={home.title}>
 				<Navbar {siteName} items={menu.items} />
 			</Header>
-			<main class="container mx-auto mb-20 mt-10 grow">
+			<main class="container mx-auto mb-20 mt-16 grow">
 				{@render children()}
 			</main>
 			<Footer {siteName} />
