@@ -1,3 +1,4 @@
-# In Our Hands
+# Ruchki
 
-The answers to all the worlds problems depend on all of us on Earth achieving inner awakening.
+A handy blog template with [Svelte](https://svelte.dev) and [Sanity](https://sanity.io).
+
