@@ -5,7 +5,7 @@
 	type Props = { data: PageData };
 
 	const { data }: Props = $props();
-	const { category } = data;
+	const { category } = $derived(data);
 </script>
 
 <div>

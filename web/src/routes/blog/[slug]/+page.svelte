@@ -8,7 +8,7 @@
 	type Props = { data: PageData };
 
 	const { data }: Props = $props();
-	const post = $derived(data.post);
+	const { post } = $derived(data);
 	const tags = $derived(post?.keywords?.split(', ') || []);
 </script>
 

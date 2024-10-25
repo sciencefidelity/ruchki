@@ -7,9 +7,9 @@
 	};
 
 	const { data }: Props = $props();
-	const { posts } = data;
+	const { posts } = $derived(data);
 </script>
 
 {#if posts}
-	<Latest posts={data.posts} />
+	<Latest {posts} />
 {/if}

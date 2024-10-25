@@ -18,9 +18,9 @@
 	};
 
 	const { children, portableText }: Props = $props();
-	let value = $state(portableText.value);
-	const href = value.href || '';
-	const rel = href.startsWith('/') ? undefined : 'noreferrer';
+	let { value } = $derived(portableText);
+	const href = $derived(value.href || '');
+	const rel = $derived(href.startsWith('/') ? undefined : 'noreferrer');
 </script>
 
 {#if value.item == null}

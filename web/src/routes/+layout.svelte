@@ -12,7 +12,7 @@
 	};
 
 	const { children, data }: Props = $props();
-	const { site, home, menu } = data;
+	const { site, home, menu } = $derived(data);
 	let title = null;
 </script>
 

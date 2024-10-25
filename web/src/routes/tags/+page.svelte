@@ -5,16 +5,18 @@
 	type Props = { data: PageData };
 
 	const { data }: Props = $props();
-	const tags = data.posts
-		? [
-				...new Set(
-					data.posts
-						.map((e) => e.keywords.split(', '))
-						.flat(1)
-						.sort()
-				)
-			]
-		: [];
+	const tags = $derived(
+		data.posts
+			? [
+					...new Set(
+						data.posts
+							.map((e) => e.keywords.split(', '))
+							.flat(1)
+							.sort()
+					)
+				]
+			: []
+	);
 </script>
 
 <div>

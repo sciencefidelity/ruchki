@@ -5,7 +5,7 @@
 	type Props = { data: PageData };
 
 	const { data }: Props = $props();
-	const { posts } = data;
+	const { posts } = $derived(data);
 </script>
 
 {#if posts}

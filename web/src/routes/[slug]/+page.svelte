@@ -5,7 +5,7 @@
 	type Props = { data: PageData };
 
 	const { data }: Props = $props();
-	const page = $derived(data.page);
+	const { page } = $derived(data);
 </script>
 
 <div class="pt mx-auto mb-7 max-w-2xl font-serif text-xl leading-8 text-gray-800">
@@ -13,9 +13,3 @@
 		<PortableText body={page.body} />
 	{/if}
 </div>
-
-<style>
-	:global(.pt p) {
-		margin-bottom: 2rem;
-	}
-</style>
