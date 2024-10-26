@@ -46,6 +46,7 @@ export const layoutQuery = groq`{
 
 export const blogQuery = groq`{
   "posts": *[_type == "post"] | order(publishedAt desc)[0..7]{
+    _id,
     author->{name, "slug": slug.current},
     body,
     categories[]->{
@@ -105,7 +106,7 @@ export const authorsQuery = groq`{
     ${body},
     name,
     "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{
-      publishedAt, "slug": slug.current, title
+      _id, publishedAt, "slug": slug.current, title
     },
     "slug": slug.current
   }[count(posts) > 0]
@@ -116,7 +117,12 @@ export const authorQuery = groq`{
     ${body},
     name,
     "posts": *[_type == "post" && author._ref == ^._id && ${omitDrafts}]{
-      publishedAt, "slug": slug.current, title
+      _id, publishedAt, "slug": slug.current, title,
+      author->{
+        name,
+        "slug": slug.current,
+        twitterHandle
+      },
     },
     "slug": slug.current
   }[count(posts) > 0][0]

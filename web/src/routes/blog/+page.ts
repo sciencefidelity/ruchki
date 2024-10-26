@@ -1,17 +1,20 @@
 import sanityClient from '$lib/sanityClient';
 import { blogQuery } from '$lib/queries';
 import type { BlogQueryResult } from '$lib/types';
+import type { PageLoad } from './$types';
 
-export async function load() {
+export const load: PageLoad = async () => {
 	const data: BlogQueryResult = await sanityClient.fetch(blogQuery);
-	let { posts } = data;
+	const { posts } = data;
+	const title = 'Blog';
 	if (posts) {
 		return {
-			posts
+			posts,
+			title
 		};
 	}
 	return {
 		status: 500,
 		body: new Error('Internal Server Error')
 	};
-}
+};

@@ -17,12 +17,8 @@
 	<div class="grid grid-cols-1 grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
 		{#each posts as { _id, author, body, categories, publishedAt, slug, title }, idx (_id)}
 			{@const plainText = body ? toPlainText(body) : ''}
-			<article
-				class={idx === 0
-					? 'grid md:col-span-2 md:gap-8 lg:col-span-3 lg:grid-cols-3'
-					: 'flex flex-col gap-6'}
-			>
-				<header class:col-span-1={idx === 0}>
+			<article class="flex flex-col gap-6">
+				<header>
 					<a href="/blog/{slug}" class="mb-6" aria-label={title}>
 						<div class="aspect-video {bg[idx % 4]}"></div>
 					</a>

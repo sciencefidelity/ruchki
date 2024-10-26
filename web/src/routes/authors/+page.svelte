@@ -8,7 +8,6 @@
 </script>
 
 <div>
-	<h1>All Authors</h1>
 	{#if authors}
 		<ul>
 			{#each authors as author}

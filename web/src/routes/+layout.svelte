@@ -5,6 +5,7 @@
 	import GlobalStyles from '$lib/GlobalStyles.svelte';
 	import Header from '$lib/Header.svelte';
 	import Navbar from '$lib/Navbar.svelte';
+	import { page } from '$app/stores';
 
 	type Props = {
 		children: Snippet;
@@ -13,14 +14,14 @@
 
 	const { children, data }: Props = $props();
 	const { site, home, menu } = $derived(data);
-	let title = null;
+	const { title } = $derived($page.data);
 </script>
 
 <GlobalStyles>
 	{#if site && home && menu}
 		{@const siteName = site.siteName || 'Untitled'}
 		<div class="flex min-h-screen flex-col antialiased">
-			<Header title={title ? title : siteName} subtitle={home.title}>
+			<Header title={title ? title : siteName} subtitle={title ? null : home.title}>
 				<Navbar {siteName} items={menu.items} />
 			</Header>
 			<main class="container mx-auto mb-20 mt-16 grow px-4">

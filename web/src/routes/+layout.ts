@@ -1,8 +1,9 @@
 import sanityClient from '$lib/sanityClient';
 import { layoutQuery } from '$lib/queries';
 import type { LayoutQueryResult } from '$lib/types';
+import type { LayoutLoad } from './$types';
 
-export async function load() {
+export const load: LayoutLoad = async () => {
 	const data: LayoutQueryResult = await sanityClient.fetch(layoutQuery);
 	// TODO: make these always return something, they should be singletons in studio.
 	const { site, home, menu } = data;
@@ -18,4 +19,4 @@ export async function load() {
 		status: 500,
 		body: new Error('Internal Server Error')
 	};
-}
+};

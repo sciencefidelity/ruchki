@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { format } from 'date-fns';
 	import PortableText from '$lib/PortableText.svelte';
 	import type { PageData } from './$types';
+	import PostsGrid from '$lib/PostsGrid.svelte';
 
 	type Props = { data: PageData };
 
@@ -11,22 +11,15 @@
 
 <div>
 	{#if author}
-		<h1>{author.name}</h1>
-		<h2>Bio</h2>
-		{#if author.body}
-			<PortableText body={author.body} />
-		{/if}
-		<h2>Posts</h2>
-		<ul>
-			{#each author.posts as post}
-				<li>
-					<a href="/blog/{post.slug}">{post.title}</a>
-					{#if post.publishedAt}
-						{format(new Date(post.publishedAt), 'eeee, do MMMM yyyy')}
-					{/if}
-				</li>
-			{/each}
-		</ul>
-		<p><a href="/authors">All authors</a></p>
+		<div class="pt mx-auto mb-16 max-w-2xl font-serif text-xl leading-8 text-gray-800">
+			<h2 class="mb-4 font-sans text-4xl font-bold">Bio</h2>
+			{#if author.body}
+				<PortableText body={author.body} />
+			{/if}
+			<h3 class="mt-4 text-xl text-gray-800 text-rose-500 underline hover:underline">
+				<a href="/authors">All authors</a>
+			</h3>
+		</div>
+		<PostsGrid posts={author.posts.slice(0, 6)} />
 	{/if}
 </div>

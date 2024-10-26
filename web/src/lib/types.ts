@@ -43,6 +43,7 @@ export type Page = {
 };
 
 export type PostPreview = {
+	_id: string;
 	author: Author | null;
 	body: BlockContent | null;
 	categories: Category[] | null;
@@ -52,6 +53,7 @@ export type PostPreview = {
 };
 
 export type Post = {
+	_id: string;
 	author: Author | null;
 	body: BlockContent | null;
 	categories: Category[] | null;
